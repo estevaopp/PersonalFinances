@@ -1,0 +1,66 @@
+{
+  "version": 3,
+  "targets": {
+    "net7.0": {}
+  },
+  "libraries": {},
+  "projectFileDependencyGroups": {
+    "net7.0": []
+  },
+  "packageFolders": {
+    "/home/estevaopp/.nuget/packages/": {}
+  },
+  "project": {
+    "version": "1.0.0",
+    "restore": {
+      "projectUniqueName": "/home/estevaopp/GitHubDocs/PersonalFinances/Src/PersonalFinances.Infra.Data/PersonalFinances.Infra.Data.csproj",
+      "projectName": "PersonalFinances.Infra.Data",
+      "projectPath": "/home/estevaopp/GitHubDocs/PersonalFinances/Src/PersonalFinances.Infra.Data/PersonalFinances.Infra.Data.csproj",
+      "packagesPath": "/home/estevaopp/.nuget/packages/",
+      "outputPath": "/home/estevaopp/GitHubDocs/PersonalFinances/Src/PersonalFinances.Infra.Data/obj/",
+      "projectStyle": "PackageReference",
+      "configFilePaths": [
+        "/home/estevaopp/.nuget/NuGet/NuGet.Config"
+      ],
+      "originalTargetFrameworks": [
+        "net7.0"
+      ],
+      "sources": {
+        "https://api.nuget.org/v3/index.json": {}
+      },
+      "frameworks": {
+        "net7.0": {
+          "targetAlias": "net7.0",
+          "projectReferences": {}
+        }
+      },
+      "warningProperties": {
+        "warnAsError": [
+          "NU1605"
+        ]
+      }
+    },
+    "frameworks": {
+      "net7.0": {
+        "targetAlias": "net7.0",
+        "imports": [
+          "net461",
+          "net462",
+          "net47",
+          "net471",
+          "net472",
+          "net48",
+          "net481"
+        ],
+        "assetTargetFallback": true,
+        "warn": true,
+        "frameworkReferences": {
+          "Microsoft.NETCore.App": {
+            "privateAssets": "all"
+          }
+        },
+        "runtimeIdentifierGraphPath": "/home/estevaopp/.asdf/installs/dotnet/7.0.101/sdk/7.0.101/RuntimeIdentifierGraph.json"
+      }
+    }
+  }
+}
