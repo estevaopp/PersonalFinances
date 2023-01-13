@@ -20,11 +20,12 @@ namespace PersonalFinances.Domain.Entities
 
         protected Revenue() { }
 
-        public Revenue(string name, int revenueTypeId, DateTime? date) 
+        public Revenue(string name, int revenueTypeId, DateTime? date, decimal value) 
         {
             Name = name;
             RevenueTypeId = revenueTypeId;
             Date = date ?? DateTime.Now;
+            Value = value;
         }
 
 

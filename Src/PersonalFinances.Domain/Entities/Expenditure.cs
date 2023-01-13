@@ -20,18 +20,19 @@ namespace PersonalFinances.Domain.Entities
 
         protected Expenditure() { }
 
-        public Expenditure(string name, int expenditureTypeId, DateTime? date) 
+        public Expenditure(string name, DateTime? date, int expenditureTypeId, decimal value) 
         {
             Name = name;
             ExpenditureTypeId = expenditureTypeId;
             Date = date ?? DateTime.Now;
+            Value = value;
         }
 
-        public void Update(string name, int expenditureTypeId, DateTime? date) 
+        public void Update(string name, int expenditureTypeId, DateTime date) 
         {
             Name = name;
             ExpenditureTypeId = expenditureTypeId;
-            Date = date ?? DateTime.Now;
+            Date = date;
         }
     }
 }
