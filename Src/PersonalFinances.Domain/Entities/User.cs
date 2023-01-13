@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using PersonalFinances.Domain.Entities.EntitiesBase;
 
 namespace PersonalFinances.Domain.Entities
 {
@@ -18,7 +17,7 @@ namespace PersonalFinances.Domain.Entities
 
         public int UserRoleId { get; private set; }
 
-        public UserRole UserRole { get; private set; }
+        public virtual UserRole UserRole { get; private set; }
 
 
         protected User() { }
@@ -41,13 +40,13 @@ namespace PersonalFinances.Domain.Entities
             UserRoleId = userRoleId;
         }
 
-        public void SetIsEmailValid()
+        public void ValidationEmail()
         {
             IsEmailValid = true;
         }
 
         
-        private void IsPassword(string password)
+        private void ValidationPassword(string password)
         {
             if(string.IsNullOrWhiteSpace(password))
                 throw new Exception();
