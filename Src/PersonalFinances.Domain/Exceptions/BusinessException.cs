@@ -1,0 +1,31 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using PersonalFinances.Domain.Enums;
+
+namespace PersonalFinances.Domain.Exceptions
+{
+    public class BusinessException : Exception
+    {
+        public string Param { get; set; }
+
+        public ErroEnum ErroEnum { get; set; }
+
+
+        public BusinessException() { }
+
+        public BusinessException(string message) : base(message) { }
+
+        public BusinessException(string message, string param) : base(message)
+        {
+            Param = param;
+        }
+
+        public BusinessException(string message, string param, ErroEnum erroEnum) : base(message)
+        {
+            Param = param;
+            ErroEnum = erroEnum;
+        }
+    }
+}

@@ -29,11 +29,12 @@ namespace PersonalFinances.Domain.Entities
         }
 
 
-        public void Update(string name, int revenueTypeId, DateTime? date) 
+        public void Update(string name, int revenueTypeId, DateTime date, decimal value) 
         {
             Name = name;
             RevenueTypeId = revenueTypeId;
-            Date = date ?? DateTime.Now;
+            Date = date;
+            Value = value;
         }
     }
 }
