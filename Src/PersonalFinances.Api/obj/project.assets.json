@@ -107,6 +107,57 @@
         "frameworkReferences": [
           "Microsoft.AspNetCore.App"
         ]
+      },
+      "PersonalFinances.Application/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v7.0",
+        "dependencies": {
+          "PersonalFinances.Domain": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/PersonalFinances.Application.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/PersonalFinances.Application.dll": {}
+        }
+      },
+      "PersonalFinances.Domain/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v7.0",
+        "compile": {
+          "bin/placeholder/PersonalFinances.Domain.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/PersonalFinances.Domain.dll": {}
+        }
+      },
+      "PersonalFinances.Infra.Data/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v7.0",
+        "dependencies": {
+          "PersonalFinances.Domain": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/PersonalFinances.Infra.Data.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/PersonalFinances.Infra.Data.dll": {}
+        }
+      },
+      "PersonalFinances.Infra.IoC/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v7.0",
+        "dependencies": {
+          "PersonalFinances.Application": "1.0.0",
+          "PersonalFinances.Domain": "1.0.0",
+          "PersonalFinances.Infra.Data": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/PersonalFinances.Infra.IoC.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/PersonalFinances.Infra.IoC.dll": {}
+        }
       }
     }
   },
@@ -451,11 +502,32 @@
         "swashbuckle.aspnetcore.swaggerui.6.4.0.nupkg.sha512",
         "swashbuckle.aspnetcore.swaggerui.nuspec"
       ]
+    },
+    "PersonalFinances.Application/1.0.0": {
+      "type": "project",
+      "path": "../PersonalFinances.Application/PersonalFinances.Application.csproj",
+      "msbuildProject": "../PersonalFinances.Application/PersonalFinances.Application.csproj"
+    },
+    "PersonalFinances.Domain/1.0.0": {
+      "type": "project",
+      "path": "../PersonalFinances.Domain/PersonalFinances.Domain.csproj",
+      "msbuildProject": "../PersonalFinances.Domain/PersonalFinances.Domain.csproj"
+    },
+    "PersonalFinances.Infra.Data/1.0.0": {
+      "type": "project",
+      "path": "../PersonalFinances.Infra.Data/PersonalFinances.Infra.Data.csproj",
+      "msbuildProject": "../PersonalFinances.Infra.Data/PersonalFinances.Infra.Data.csproj"
+    },
+    "PersonalFinances.Infra.IoC/1.0.0": {
+      "type": "project",
+      "path": "../PersonalFinances.Infra.IoC/PersonalFinances.Infra.IoC.csproj",
+      "msbuildProject": "../PersonalFinances.Infra.IoC/PersonalFinances.Infra.IoC.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net7.0": [
       "Microsoft.AspNetCore.OpenApi >= 7.0.1",
+      "PersonalFinances.Infra.IoC >= 1.0.0",
       "Swashbuckle.AspNetCore >= 6.4.0"
     ]
   },
@@ -483,7 +555,11 @@
       "frameworks": {
         "net7.0": {
           "targetAlias": "net7.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "/home/estevaopp/GitHubDocs/PersonalFinances/Src/PersonalFinances.Infra.IoC/PersonalFinances.Infra.IoC.csproj": {
+              "projectPath": "/home/estevaopp/GitHubDocs/PersonalFinances/Src/PersonalFinances.Infra.IoC/PersonalFinances.Infra.IoC.csproj"
+            }
+          }
         }
       },
       "warningProperties": {

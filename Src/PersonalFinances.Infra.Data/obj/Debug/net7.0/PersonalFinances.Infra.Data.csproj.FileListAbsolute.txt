@@ -1,0 +1,15 @@
+/home/estevaopp/GitHubDocs/PersonalFinances/Src/PersonalFinances.Infra.Data/bin/Debug/net7.0/PersonalFinances.Infra.Data.deps.json
+/home/estevaopp/GitHubDocs/PersonalFinances/Src/PersonalFinances.Infra.Data/bin/Debug/net7.0/PersonalFinances.Infra.Data.dll
+/home/estevaopp/GitHubDocs/PersonalFinances/Src/PersonalFinances.Infra.Data/bin/Debug/net7.0/PersonalFinances.Infra.Data.pdb
+/home/estevaopp/GitHubDocs/PersonalFinances/Src/PersonalFinances.Infra.Data/bin/Debug/net7.0/PersonalFinances.Domain.dll
+/home/estevaopp/GitHubDocs/PersonalFinances/Src/PersonalFinances.Infra.Data/bin/Debug/net7.0/PersonalFinances.Domain.pdb
+/home/estevaopp/GitHubDocs/PersonalFinances/Src/PersonalFinances.Infra.Data/obj/Debug/net7.0/PersonalFinances.Infra.Data.csproj.AssemblyReference.cache
+/home/estevaopp/GitHubDocs/PersonalFinances/Src/PersonalFinances.Infra.Data/obj/Debug/net7.0/PersonalFinances.Infra.Data.GeneratedMSBuildEditorConfig.editorconfig
+/home/estevaopp/GitHubDocs/PersonalFinances/Src/PersonalFinances.Infra.Data/obj/Debug/net7.0/PersonalFinances.Infra.Data.AssemblyInfoInputs.cache
+/home/estevaopp/GitHubDocs/PersonalFinances/Src/PersonalFinances.Infra.Data/obj/Debug/net7.0/PersonalFinances.Infra.Data.AssemblyInfo.cs
+/home/estevaopp/GitHubDocs/PersonalFinances/Src/PersonalFinances.Infra.Data/obj/Debug/net7.0/PersonalFinances.Infra.Data.csproj.CoreCompileInputs.cache
+/home/estevaopp/GitHubDocs/PersonalFinances/Src/PersonalFinances.Infra.Data/obj/Debug/net7.0/PersonalFinances.Infra.Data.csproj.CopyComplete
+/home/estevaopp/GitHubDocs/PersonalFinances/Src/PersonalFinances.Infra.Data/obj/Debug/net7.0/PersonalFinances.Infra.Data.dll
+/home/estevaopp/GitHubDocs/PersonalFinances/Src/PersonalFinances.Infra.Data/obj/Debug/net7.0/refint/PersonalFinances.Infra.Data.dll
+/home/estevaopp/GitHubDocs/PersonalFinances/Src/PersonalFinances.Infra.Data/obj/Debug/net7.0/PersonalFinances.Infra.Data.pdb
+/home/estevaopp/GitHubDocs/PersonalFinances/Src/PersonalFinances.Infra.Data/obj/Debug/net7.0/ref/PersonalFinances.Infra.Data.dll

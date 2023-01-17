@@ -9,12 +9,12 @@ namespace PersonalFinances.Domain.Interfaces
 {
     public interface IAsyncRepository<T> where T : EntityBase
     {
-        Task<T> GetById(int id);
-        Task<IEnumerable<T>> GetAll();
-        Task Add(T entity);
-        Task Update(T entity);
-        Task Delete(T entity);
-        Task<IEnumerable<T>> FindBy(params Expression<Func<T, bool>>[] includes);
-        Task<IEnumerable<T>> ExecProcedure(string procedure, string nameParameter, string parameter);
+        Task<T> GetByIdAsync(int id);
+        Task<IEnumerable<T>> GetAllAsync();
+        Task CreateAsync(T entity);
+        Task UpdateAsync(T entity);
+        Task DeleteAsync(T entity);
+        Task<IEnumerable<T>> FindByAsync(params Expression<Func<T, bool>>[] includes);
+        Task<IEnumerable<T>> ExecProcedureAsync(string procedure, string nameParameter, string parameter);
     }
 }

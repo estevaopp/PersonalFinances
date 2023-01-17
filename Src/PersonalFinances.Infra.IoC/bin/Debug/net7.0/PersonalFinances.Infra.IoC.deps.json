@@ -1,0 +1,64 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v7.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v7.0": {
+      "PersonalFinances.Infra.IoC/1.0.0": {
+        "dependencies": {
+          "PersonalFinances.Application": "1.0.0",
+          "PersonalFinances.Domain": "1.0.0",
+          "PersonalFinances.Infra.Data": "1.0.0"
+        },
+        "runtime": {
+          "PersonalFinances.Infra.IoC.dll": {}
+        }
+      },
+      "PersonalFinances.Application/1.0.0": {
+        "dependencies": {
+          "PersonalFinances.Domain": "1.0.0"
+        },
+        "runtime": {
+          "PersonalFinances.Application.dll": {}
+        }
+      },
+      "PersonalFinances.Domain/1.0.0": {
+        "runtime": {
+          "PersonalFinances.Domain.dll": {}
+        }
+      },
+      "PersonalFinances.Infra.Data/1.0.0": {
+        "dependencies": {
+          "PersonalFinances.Domain": "1.0.0"
+        },
+        "runtime": {
+          "PersonalFinances.Infra.Data.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "PersonalFinances.Infra.IoC/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "PersonalFinances.Application/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "PersonalFinances.Domain/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "PersonalFinances.Infra.Data/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}
