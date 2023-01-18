@@ -1,4 +1,4 @@
-namespace PersonalFinances.Infra.Application.Tests;
+namespace PersonalFinances.Application.Tests;
 
 public class UnitTest1
 {
