@@ -1,3 +1,5 @@
+using Xunit;
+
 namespace PersonalFinances.Application.Tests;
 
 public class UnitTest1

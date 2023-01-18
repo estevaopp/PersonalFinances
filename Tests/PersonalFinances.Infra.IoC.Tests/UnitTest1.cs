@@ -1,3 +1,4 @@
+using Xunit;
 namespace PersonalFinances.Infra.IoC.Tests;
 
 public class UnitTest1

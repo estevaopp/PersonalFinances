@@ -26,6 +26,9 @@ namespace PersonalFinances.Domain.Entities
 
         public User(string username, string email, string password, int userRoleId)
         {
+            ValidationUsername(username);
+            ValidationPassword(password);
+            ValidationEmail(email);
             Username = username;
             Email = email;
             Password = password;
@@ -42,9 +45,27 @@ namespace PersonalFinances.Domain.Entities
             UserRoleId = userRoleId;
         }
 
-        public void ValidationEmail()
+        public void SetIsEmailValid()
         {
             IsEmailValid = true;
+        }
+
+        private void ValidationUsername(string username)
+        {
+            if(string.IsNullOrWhiteSpace(username))
+                throw new BusinessException("Este campo é obrigatório", nameof(Username), ErroEnum.ResourceInvalidField);
+
+            if (username.Length < 3 || username.Length > 20)
+                throw new BusinessException("O Password deve ter entre 8 e 100 caracteres", nameof(Password), ErroEnum.ResourceInvalidField);
+        }
+
+        private void ValidationEmail(string email)
+        {
+            if(string.IsNullOrWhiteSpace(email))
+                throw new BusinessException("Este campo é obrigatório", nameof(Email), ErroEnum.ResourceInvalidField);
+
+            if (email.Length < 3 || email.Length > 20)
+                throw new BusinessException("O Password deve ter entre 8 e 100 caracteres", nameof(Password), ErroEnum.ResourceInvalidField);
         }
 
         
@@ -73,6 +94,6 @@ namespace PersonalFinances.Domain.Entities
                 if (password.Where(x => x == c).Count() >= 3)
                     throw new BusinessException("Cada caracter do Password não pode ser repetido mais de 3 vezes", nameof(password), ErroEnum.ResourceInvalidField);
             }
-        } 
+        }
     }
 }
