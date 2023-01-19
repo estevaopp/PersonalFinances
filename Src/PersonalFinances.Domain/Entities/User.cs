@@ -17,6 +17,8 @@ namespace PersonalFinances.Domain.Entities
 
         public bool IsEmailValid { get; private set; }
 
+        public DateTime CreationDate { get; }
+
         public int UserRoleId { get; private set; }
 
         public virtual UserRole UserRole { get; private set; }
@@ -34,6 +36,7 @@ namespace PersonalFinances.Domain.Entities
             Password = password;
             IsEmailValid = false;
             UserRoleId = userRoleId;
+            CreationDate = DateTime.Now;
         }
 
 
@@ -42,7 +45,6 @@ namespace PersonalFinances.Domain.Entities
             Username = username;
             Email = email;
             Password = password;
-            UserRoleId = userRoleId;
         }
 
         public void SetIsEmailValid()
@@ -56,7 +58,7 @@ namespace PersonalFinances.Domain.Entities
                 throw new BusinessException("Este campo é obrigatório", nameof(Username), ErroEnum.ResourceInvalidField);
 
             if (username.Length < 3 || username.Length > 20)
-                throw new BusinessException("O Password deve ter entre 8 e 100 caracteres", nameof(Password), ErroEnum.ResourceInvalidField);
+                throw new BusinessException("O username deve ter entre 3 e 20 caracteres", nameof(Username), ErroEnum.ResourceInvalidField);
         }
 
         private void ValidationEmail(string email)
@@ -64,8 +66,8 @@ namespace PersonalFinances.Domain.Entities
             if(string.IsNullOrWhiteSpace(email))
                 throw new BusinessException("Este campo é obrigatório", nameof(Email), ErroEnum.ResourceInvalidField);
 
-            if (email.Length < 3 || email.Length > 20)
-                throw new BusinessException("O Password deve ter entre 8 e 100 caracteres", nameof(Password), ErroEnum.ResourceInvalidField);
+            if (email.Length < 3 || email.Length > 100)
+                throw new BusinessException("O Email deve ter entre 3 e 100 caracteres", nameof(Email), ErroEnum.ResourceInvalidField);
         }
 
         

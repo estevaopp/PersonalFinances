@@ -7,45 +7,23 @@ using PersonalFinances.Domain.Exceptions;
 
 namespace PersonalFinances.Domain.Entities
 {
-    public class Revenue : EntityBase
+    public class RevenueCategory : EntityBase
     {
         public string Name { get; private set; }
-        
-        public DateTime Date { get; private set; }
-
-        public decimal Value { get; private set; }
 
         public string Description { get; private set; }
 
-        public int RevenueCategoryId { get; private set; }
+        protected RevenueCategory() { }
 
-        public virtual RevenueCategory RevenueCategory { get; private set; }
-
-
-        protected Revenue() { }
-
-        public Revenue(string name, int revenueCategoryId, DateTime? date, decimal value, string description) 
+        public RevenueCategory(string name, string description)
         {
-            ValidationName(name);
-            ValidationValue(value);
-            ValidationDescription(description);
             Name = name;
-            RevenueCategoryId = revenueCategoryId;
-            Date = date ?? DateTime.Now.Date;
-            Value = value;
             Description = description;
         }
 
-
-        public void Update(string name, int revenueCategoryId, DateTime date, decimal value, string description) 
+        public void Update(string name, string description)
         {
-            ValidationName(name);
-            ValidationValue(value);
-            ValidationDescription(description);
             Name = name;
-            RevenueCategoryId = revenueCategoryId;
-            Date = date.Date;
-            Value = value;
             Description = description;
         }
 
@@ -66,12 +44,6 @@ namespace PersonalFinances.Domain.Entities
 
             if (description.Length < 5 || description.Length > 60)
                 throw new BusinessException("A descrição deve ter entre 5 e 60 caracteres", nameof(Description), ErroEnum.ResourceInvalidField);
-        }
-
-        private void ValidationValue(decimal value)
-        {
-            if(value <= 0)
-                throw new BusinessException("Valor tem que ser maior que 0", nameof(Value), ErroEnum.ResourceInvalidField);
         }
     }
 }

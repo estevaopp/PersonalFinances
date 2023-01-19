@@ -2,6 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using PersonalFinances.Domain.Enums;
+using PersonalFinances.Domain.Exceptions;
 
 namespace PersonalFinances.Domain.Entities
 {
@@ -13,27 +15,62 @@ namespace PersonalFinances.Domain.Entities
 
         public decimal Value { get; private set; }
 
-        public int ExpenditureTypeId { get; private set; }
+        public string Description { get; private set; }
 
-        public virtual ExpenditureType ExpenditureType { get; private set; }
+        public int ExpenditureCategoryId { get; private set; }
+
+        public virtual ExpenditureCategory ExpenditureCategory { get; private set; }
 
 
         protected Expenditure() { }
 
-        public Expenditure(string name, DateTime? date, int expenditureTypeId, decimal value) 
+        public Expenditure(string name, int expenditureCategoryId, DateTime? date, decimal value, string description) 
         {
+            ValidationName(name);
+            ValidationValue(value);
+            ValidationDescription(description);
             Name = name;
-            ExpenditureTypeId = expenditureTypeId;
-            Date = date ?? DateTime.Now;
+            ExpenditureCategoryId = expenditureCategoryId;
+            Date = date ?? DateTime.Now.Date;
             Value = value;
+            Description = description;
         }
 
-        public void Update(string name, int expenditureTypeId, DateTime date, decimal value) 
+        public void Update(string name, int expenditureCategoryId, DateTime date, decimal value, string description) 
         {
+            ValidationName(name);
+            ValidationValue(value);
+            ValidationDescription(description);
             Name = name;
-            ExpenditureTypeId = expenditureTypeId;
-            Date = date;
+            ExpenditureCategoryId = expenditureCategoryId;
+            Date = date.Date;
             Value = value;
+            Description = description;
+        }
+
+
+        private void ValidationName(string name)
+        {
+            if(string.IsNullOrWhiteSpace(name))
+                throw new BusinessException("Este campo é obrigatório", nameof(Name), ErroEnum.ResourceInvalidField);
+
+            if (name.Length < 3 || name.Length > 30)
+                throw new BusinessException("O nome deve ter entre 3 e 30 caracteres", nameof(Name), ErroEnum.ResourceInvalidField);
+        }
+
+        private void ValidationDescription(string description)
+        {
+            if(string.IsNullOrWhiteSpace(description))
+                throw new BusinessException("Este campo é obrigatório", nameof(Description), ErroEnum.ResourceInvalidField);
+
+            if (description.Length < 5 || description.Length > 60)
+                throw new BusinessException("A descrição deve ter entre 5 e 60 caracteres", nameof(Description), ErroEnum.ResourceInvalidField);
+        }
+
+        private void ValidationValue(decimal value)
+        {
+            if(value <= 0)
+                throw new BusinessException("Valor tem que ser maior que 0", nameof(Value), ErroEnum.ResourceInvalidField);
         }
     }
 }

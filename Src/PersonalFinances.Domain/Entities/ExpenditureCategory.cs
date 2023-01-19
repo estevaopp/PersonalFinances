@@ -1,34 +1,34 @@
-
-
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using PersonalFinances.Domain.Enums;
 using PersonalFinances.Domain.Exceptions;
 
 namespace PersonalFinances.Domain.Entities
 {
-    public class UserRole : EntityBase
+    public class ExpenditureCategory : EntityBase
     {
-        
-        public string Name { get; private set; }
+        public string Name { get; set; }
 
-        public string Description { get; private set; }
-        
+        public string Description { get; set; }
 
-        protected UserRole() { }
 
-        public UserRole(string name, string description) 
+        protected ExpenditureCategory() { }
+
+        public ExpenditureCategory(string name, string description)
         {
-            this.Name = name;
-            this.Description = description;
+            Name = name;
+            Description = description;
         }
 
 
-        public void Update(string name, string description) 
+        public void Update(string name, string description)
         {
-            ValidationName(name);
-            ValidationDescription(description);
-            this.Name = name;
-            this.Description = description;
+            Name = name;
+            Description = description;
         }
+
 
         private void ValidationName(string name)
         {
@@ -45,7 +45,7 @@ namespace PersonalFinances.Domain.Entities
                 throw new BusinessException("Este campo é obrigatório", nameof(Description), ErroEnum.ResourceInvalidField);
 
             if (description.Length < 5 || description.Length > 60)
-                throw new BusinessException("A descrição deve ter entre 5 e 60 caracteres", nameof(Description), ErroEnum.ResourceInvalidField);
+                throw new BusinessException("O descrição deve ter entre 5 e 60 caracteres", nameof(Description), ErroEnum.ResourceInvalidField);
         }
     }
 }
