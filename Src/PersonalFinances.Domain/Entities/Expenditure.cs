@@ -17,6 +17,8 @@ namespace PersonalFinances.Domain.Entities
 
         public string Description { get; private set; }
 
+        public int UserId { get; private set; }
+
         public int ExpenditureCategoryId { get; private set; }
 
         public virtual ExpenditureCategory ExpenditureCategory { get; private set; }
