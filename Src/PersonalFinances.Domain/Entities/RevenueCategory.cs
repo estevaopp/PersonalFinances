@@ -17,12 +17,16 @@ namespace PersonalFinances.Domain.Entities
 
         public RevenueCategory(string name, string description)
         {
+            ValidationName(name);
+            ValidationDescription(description);
             Name = name;
             Description = description;
         }
 
         public void Update(string name, string description)
         {
+            ValidationName(name);
+            ValidationDescription(description);
             Name = name;
             Description = description;
         }

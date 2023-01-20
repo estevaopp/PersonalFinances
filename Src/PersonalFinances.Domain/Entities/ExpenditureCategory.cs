@@ -18,6 +18,8 @@ namespace PersonalFinances.Domain.Entities
 
         public ExpenditureCategory(string name, string description)
         {
+            ValidationName(name);
+            ValidationDescription(description);
             Name = name;
             Description = description;
         }
@@ -25,6 +27,8 @@ namespace PersonalFinances.Domain.Entities
 
         public void Update(string name, string description)
         {
+            ValidationName(name);
+            ValidationDescription(description);
             Name = name;
             Description = description;
         }

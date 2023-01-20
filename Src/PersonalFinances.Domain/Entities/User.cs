@@ -39,18 +39,16 @@ namespace PersonalFinances.Domain.Entities
             CreationDate = DateTime.Now;
         }
 
-
-        public void Update(string username, string email, string password, int userRoleId)
-        {
-            Username = username;
-            Email = email;
-            Password = password;
-        }
-
-        public void SetIsEmailValid()
+        public void UpdateIsEmailValid()
         {
             IsEmailValid = true;
         }
+
+        public void UpdateUserRoleId(int userRoleId)
+        {
+            UserRoleId = userRoleId;
+        }
+
 
         private void ValidationUsername(string username)
         {

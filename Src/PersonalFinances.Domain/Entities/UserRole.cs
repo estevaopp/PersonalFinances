@@ -17,6 +17,8 @@ namespace PersonalFinances.Domain.Entities
 
         public UserRole(string name, string description) 
         {
+            ValidationName(name);
+            ValidationDescription(description);
             this.Name = name;
             this.Description = description;
         }
