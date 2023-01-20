@@ -12,6 +12,7 @@ namespace PersonalFinances.Domain.Entities
 
         public string Description { get; private set; }
         
+        public virtual List<User> Users { get; private set; }
 
         protected UserRole() { }
 
