@@ -9,9 +9,11 @@ namespace PersonalFinances.Domain.Entities
 {
     public class ExpenditureCategory : EntityBase
     {
-        public string Name { get; set; }
+        public string Name { get; private set; }
 
-        public string Description { get; set; }
+        public string Description { get; private set; }
+
+        public List<Expenditure> Expenditures { get; private set; }
 
 
         protected ExpenditureCategory() { }
