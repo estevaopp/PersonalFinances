@@ -19,6 +19,8 @@ namespace PersonalFinances.Domain.Entities
 
         public int UserId { get; private set; }
 
+        public User User { get; private set; }
+
         public int RevenueCategoryId { get; private set; }
 
         public virtual RevenueCategory RevenueCategory { get; private set; }
@@ -26,7 +28,7 @@ namespace PersonalFinances.Domain.Entities
 
         protected Revenue() { }
 
-        public Revenue(string name, int revenueCategoryId, DateTime? date, decimal value, string description) 
+        public Revenue(string name, int revenueCategoryId, DateTime? date, decimal value, string description, int userId) 
         {
             ValidationName(name);
             ValidationValue(value);
@@ -36,6 +38,7 @@ namespace PersonalFinances.Domain.Entities
             Date = date ?? DateTime.Now.Date;
             Value = value;
             Description = description;
+            UserId = userId;
         }
 
 

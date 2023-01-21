@@ -13,7 +13,7 @@ namespace PersonalFinances.Domain.Entities
 
         public string Description { get; private set; }
 
-        public List<Revenue> Reveneus { get; private set; }
+        public List<Revenue> Revenues { get; private set; }
 
 
         protected RevenueCategory() { }

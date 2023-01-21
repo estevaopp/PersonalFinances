@@ -8,21 +8,21 @@ public class UserConfiguration : IEntityTypeConfiguration<User>
 {
     public void Configure(EntityTypeBuilder<User> builder)
     {
-        builder.HasKey(user => user.Id);
-        builder.Property(user => user.Id).UseIdentityColumn();
+        builder.HasKey(u => u.Id);
+        builder.Property(u => u.Id).UseIdentityColumn();
 
-        builder.Property(user => user.Username).IsRequired().HasMaxLength(20);
+        builder.Property(u => u.Username).IsRequired().HasMaxLength(20);
 
-        builder.Property(user => user.Email).IsRequired().HasMaxLength(100);
+        builder.Property(u => u.Email).IsRequired().HasMaxLength(100);
 
-        builder.Property(user => user.Password).IsRequired().HasMaxLength(100);
+        builder.Property(u => u.Password).IsRequired().HasMaxLength(100);
 
-        builder.Property(user => user.CreationDate).IsRequired();
+        builder.Property(u => u.CreationDate).IsRequired();
 
-        builder.HasOne(e => e.UserRole).WithMany(e => e.Users).HasForeignKey(e => e.UserRoleId);
-        builder.Property(user => user.UserRoleId).IsRequired();
+        builder.HasOne(u => u.UserRole).WithMany(u => u.Users).HasForeignKey(u => u.UserRoleId);
+        builder.Property(u => u.UserRoleId).IsRequired();
 
-        builder.Property(user => user.IsEmailValid).IsRequired();
+        builder.Property(u => u.IsEmailValid).IsRequired();
     }
 }
 

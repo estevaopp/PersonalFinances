@@ -23,6 +23,10 @@ namespace PersonalFinances.Domain.Entities
 
         public virtual UserRole UserRole { get; private set; }
 
+        public virtual Revenue Revenue { get; private set; }
+
+        public virtual Expenditure Expenditure { get; private set; }
+
 
         protected User() { }
 
