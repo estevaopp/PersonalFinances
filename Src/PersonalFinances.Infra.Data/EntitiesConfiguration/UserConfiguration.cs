@@ -4,7 +4,7 @@ using PersonalFinances.Domain.Entities;
 
 namespace PersonalFinances.Infra.Data.EntitiesConfiguration;
 
-public class CategoryConfiguration : IEntityTypeConfiguration<User>
+public class UserConfiguration : IEntityTypeConfiguration<User>
 {
     public void Configure(EntityTypeBuilder<User> builder)
     {

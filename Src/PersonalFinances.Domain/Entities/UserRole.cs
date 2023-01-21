@@ -38,8 +38,8 @@ namespace PersonalFinances.Domain.Entities
             if(string.IsNullOrWhiteSpace(name))
                 throw new BusinessException("Este campo é obrigatório", nameof(Name), ErroEnum.ResourceInvalidField);
 
-            if (name.Length < 3 || name.Length > 30)
-                throw new BusinessException("O nome deve ter entre 3 e 30 caracteres", nameof(Name), ErroEnum.ResourceInvalidField);
+            if (name.Length < 3 || name.Length > 20)
+                throw new BusinessException("O nome deve ter entre 3 e 20 caracteres", nameof(Name), ErroEnum.ResourceInvalidField);
         }
 
         private void ValidationDescription(string description)
