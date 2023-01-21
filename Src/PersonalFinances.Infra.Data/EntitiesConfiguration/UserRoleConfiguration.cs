@@ -15,7 +15,7 @@ namespace PersonalFinances.Infra.Data.EntitiesConfiguration
             builder.HasKey(u => u.Id);
             builder.Property(u => u.Id).UseIdentityColumn();
 
-            builder.Property(u => u.Name).IsRequired().HasMaxLength(20);
+            builder.Property(u => u.Name).IsRequired().HasMaxLength(30);
 
             builder.Property(u => u.Description).IsRequired().HasMaxLength(60);
         }
