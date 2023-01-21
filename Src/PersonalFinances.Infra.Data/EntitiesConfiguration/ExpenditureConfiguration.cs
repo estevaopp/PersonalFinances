@@ -8,9 +8,9 @@ using PersonalFinances.Domain.Entities;
 
 namespace PersonalFinances.Infra.Data.EntitiesConfiguration
 {
-    public class RevenueConfiguration : IEntityTypeConfiguration<Revenue>
+    public class ExpenditureConfiguration : IEntityTypeConfiguration<Expenditure>
     {
-        public void Configure(EntityTypeBuilder<Revenue> builder)
+        public void Configure(EntityTypeBuilder<Expenditure> builder)
         {
             builder.HasKey(r => r.Id);
             builder.Property(r => r.Id).UseIdentityColumn();
@@ -23,11 +23,11 @@ namespace PersonalFinances.Infra.Data.EntitiesConfiguration
 
             builder.Property(r => r.Description).IsRequired().HasMaxLength(60);
 
-            builder.HasOne(r => r.User).WithOne(u => u.Revenue).HasForeignKey<Revenue>(e => e.UserId);
+            builder.HasOne(r => r.User).WithOne(u => u.Expenditure).HasForeignKey<Expenditure>(e => e.UserId);
             builder.Property(r => r.UserId).IsRequired();
 
-            builder.HasOne(r => r.RevenueCategory).WithMany(r => r.Revenues).HasForeignKey(r => r.RevenueCategoryId);
-            builder.Property(r => r.RevenueCategoryId).IsRequired();
+            builder.HasOne(r => r.ExpenditureCategory).WithMany(r => r.Expenditures).HasForeignKey(r => r.ExpenditureCategoryId);
+            builder.Property(r => r.ExpenditureCategoryId).IsRequired();
         }
     }
 }

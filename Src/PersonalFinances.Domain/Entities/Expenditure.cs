@@ -19,6 +19,8 @@ namespace PersonalFinances.Domain.Entities
 
         public int UserId { get; private set; }
 
+        public User User { get; private set; }
+
         public int ExpenditureCategoryId { get; private set; }
 
         public virtual ExpenditureCategory ExpenditureCategory { get; private set; }
@@ -26,7 +28,7 @@ namespace PersonalFinances.Domain.Entities
 
         protected Expenditure() { }
 
-        public Expenditure(string name, int expenditureCategoryId, DateTime? date, decimal value, string description) 
+        public Expenditure(string name, int expenditureCategoryId, DateTime? date, decimal value, string description, int userId) 
         {
             ValidationName(name);
             ValidationValue(value);
@@ -36,6 +38,7 @@ namespace PersonalFinances.Domain.Entities
             Date = date ?? DateTime.Now.Date;
             Value = value;
             Description = description;
+            UserId = userId;
         }
 
         public void Update(string name, int expenditureCategoryId, DateTime date, decimal value, string description) 
