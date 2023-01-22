@@ -37,15 +37,7 @@ namespace PersonalFinances.Infra.Data.Repository
             if (parameters == null)
                 return await _context.Set<T>().FromSqlInterpolated($"call {procedure}").ToListAsync();
             
-            var queryString = $"call {procedure} (";
-
-            for (int i = 0; i <= parameters.Count(); i++)
-            {
-                if (i == parameters.Count())
-                    queryString += $"{parameters[i]})";
-                else
-                    queryString += $"{parameters[i]},";
-            }
+            var queryString = $"call {procedure} ({string.Join(", ",parameters)})";
 
             var query = _context.Set<T>().FromSqlRaw(queryString);
 
