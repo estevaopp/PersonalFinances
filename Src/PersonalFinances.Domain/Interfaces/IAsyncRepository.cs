@@ -11,10 +11,13 @@ namespace PersonalFinances.Domain.Interfaces
     {
         Task<T> GetByIdAsync(int id);
         Task<IEnumerable<T>> GetAllAsync();
-        Task CreateAsync(T entity);
+        Task AddAsync(T entity);
         Task UpdateAsync(T entity);
         Task DeleteAsync(T entity);
-        Task<IEnumerable<T>> FindByAsync(params Expression<Func<T, bool>>[] includes);
-        Task<IEnumerable<T>> ExecProcedureAsync(string procedure, string nameParameter, string parameter);
+        // Task<IEnumerable<T>> FindByAsync(Expression<Func<T, bool>> predicate);
+        Task<IEnumerable<T>> FindByAsync(Expression<Func<T, bool>> filter = null, 
+                                         Expression<Func<T, object>> orderBy = null, 
+                                         Expression<Func<T, object>> include = null);
+        Task<IEnumerable<T>> ExecProcedureAsync(string procedure, List<string> parameters);
     }
 }
