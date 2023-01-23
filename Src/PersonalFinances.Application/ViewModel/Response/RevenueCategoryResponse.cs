@@ -4,9 +4,9 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace PersonalFinances.Application.DTOs
+namespace PersonalFinances.Application.ViewModel.Response
 {
-    public class UserRoleDTO
+    public class RevenueCategoryResponse
     {
         public int Id { get; set; }
 

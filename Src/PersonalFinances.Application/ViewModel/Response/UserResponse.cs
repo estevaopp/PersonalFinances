@@ -5,9 +5,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using PersonalFinances.Domain.Entities;
 
-namespace PersonalFinances.Application.DTOs
+namespace PersonalFinances.Application.ViewModel.Response
 {
-    public class UserDTO
+    public class UserResponse
     {
         public int Id { get; set; }
 

@@ -5,9 +5,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using PersonalFinances.Domain.Entities;
 
-namespace PersonalFinances.Application.DTOs
+namespace PersonalFinances.Application.ViewModel.Response
 {
-    public class ExpenditureDTO
+    public class RevenueResponse
     {
         public int Id { get; set; }
 
@@ -29,8 +29,9 @@ namespace PersonalFinances.Application.DTOs
 
         public int UserId { get; set; }
 
-        public int ExpenditureCategoryId { get; private set; }
+        [Required(ErrorMessage ="The Revenue's Category is Required")]
+        public int RevenueCategoryId { get; set; }
 
-        public virtual ExpenditureCategory ExpenditureCategory { get; private set; }
+        public virtual RevenueCategory RevenueCategory { get; private set; }
     }
 }

@@ -1,5 +1,5 @@
 using AutoMapper;
-using PersonalFinances.Application.DTOs;
+using PersonalFinances.Application.ViewModel.Response;
 using PersonalFinances.Domain.Entities;
 
 namespace PersonalFinances.Application.Mappers;
@@ -8,16 +8,16 @@ public class DomainToDTOMappingProfile : Profile
 {
     public DomainToDTOMappingProfile()
     {
-        CreateMap<User, UserDTO>().ReverseMap();
+        CreateMap<User, UserResponse>();
 
-        CreateMap<UserRole, UserRoleDTO>().ReverseMap();
+        CreateMap<UserRole, UserRoleResponse>();
 
-        CreateMap<RevenueCategory, RevenueCategoryDTO>().ReverseMap();
+        CreateMap<RevenueCategory, RevenueCategoryResponse>();
 
-        CreateMap<ExpenditureCategory, ExpenditureCategoryDTO>().ReverseMap();
+        CreateMap<ExpenditureCategory, ExpenditureCategoryResponse>();
 
-        CreateMap<Revenue, RevenueDTO>().ReverseMap();
+        CreateMap<Revenue, RevenueResponse>();
 
-        CreateMap<Expenditure, ExpenditureDTO>().ReverseMap();
+        CreateMap<Expenditure, ExpenditureResponse>();
     }
 }
