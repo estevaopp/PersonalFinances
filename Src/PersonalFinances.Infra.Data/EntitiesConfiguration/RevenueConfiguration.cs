@@ -23,7 +23,7 @@ namespace PersonalFinances.Infra.Data.EntitiesConfiguration
 
             builder.Property(r => r.Description).IsRequired().HasMaxLength(60);
 
-            builder.HasOne(r => r.User).WithOne(u => u.Revenue).HasForeignKey<Revenue>(e => e.UserId);
+            builder.HasOne(r => r.User).WithMany(u => u.Revenues).HasForeignKey(r => r.UserId);
             builder.Property(r => r.UserId).IsRequired();
 
             builder.HasOne(r => r.RevenueCategory).WithMany(r => r.Revenues).HasForeignKey(r => r.RevenueCategoryId);

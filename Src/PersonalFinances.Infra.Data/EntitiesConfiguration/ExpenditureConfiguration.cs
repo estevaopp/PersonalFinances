@@ -12,22 +12,22 @@ namespace PersonalFinances.Infra.Data.EntitiesConfiguration
     {
         public void Configure(EntityTypeBuilder<Expenditure> builder)
         {
-            builder.HasKey(r => r.Id);
-            builder.Property(r => r.Id).UseIdentityColumn();
+            builder.HasKey(e => e.Id);
+            builder.Property(e => e.Id).UseIdentityColumn();
 
-            builder.Property(r => r.Name).IsRequired().HasMaxLength(30);
+            builder.Property(e => e.Name).IsRequired().HasMaxLength(30);
 
-            builder.Property(r => r.Date).IsRequired();
+            builder.Property(e => e.Date).IsRequired();
 
-            builder.Property(r => r.Value).IsRequired().HasPrecision(18,2);
+            builder.Property(e => e.Value).IsRequired().HasPrecision(18,2);
 
-            builder.Property(r => r.Description).IsRequired().HasMaxLength(60);
+            builder.Property(e => e.Description).IsRequired().HasMaxLength(60);
 
-            builder.HasOne(r => r.User).WithOne(u => u.Expenditure).HasForeignKey<Expenditure>(e => e.UserId);
-            builder.Property(r => r.UserId).IsRequired();
+            builder.HasOne(e => e.User).WithMany(u => u.Expenditures).HasForeignKey(e => e.UserId);
+            builder.Property(e => e.UserId).IsRequired();
 
-            builder.HasOne(r => r.ExpenditureCategory).WithMany(r => r.Expenditures).HasForeignKey(r => r.ExpenditureCategoryId);
-            builder.Property(r => r.ExpenditureCategoryId).IsRequired();
+            builder.HasOne(e => e.ExpenditureCategory).WithMany(e => e.Expenditures).HasForeignKey(e => e.ExpenditureCategoryId);
+            builder.Property(e => e.ExpenditureCategoryId).IsRequired();
         }
     }
 }
