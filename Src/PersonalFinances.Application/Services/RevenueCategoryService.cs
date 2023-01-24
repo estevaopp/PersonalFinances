@@ -7,6 +7,7 @@ using PersonalFinances.Application.Interfaces;
 using PersonalFinances.Application.ViewModel.Request.RevenueCategory;
 using PersonalFinances.Application.ViewModel.Response;
 using PersonalFinances.Domain.Entities;
+using PersonalFinances.Domain.Exceptions;
 using PersonalFinances.Domain.Interfaces;
 
 namespace PersonalFinances.Application.Services
@@ -31,22 +32,40 @@ namespace PersonalFinances.Application.Services
 
         public async Task Delete(int id)
         {
-            throw new NotImplementedException();
+            RevenueCategory revenueCategory = await _revenueCategoryRepository.GetByIdAsync(id);
+
+            if (revenueCategory == null)
+                throw new BusinessException("Invalid Id");
+
+            await _revenueCategoryRepository.DeleteAsync(revenueCategory);
         }
 
         public async Task<List<RevenueCategoryResponse>> GetAllRevenueCategories()
         {
-            throw new NotImplementedException();
+            List<RevenueCategory> revenueCategories = (List<RevenueCategory>) await _revenueCategoryRepository.GetAllAsync();
+            List<RevenueCategoryResponse> revenueCategoryResponses = _mapper.Map<List<RevenueCategoryResponse>>(revenueCategories); 
+
+            return revenueCategoryResponses;
         }
 
         public async Task<RevenueCategoryResponse> GetRevenueCategoryById(int id)
         {
-            throw new NotImplementedException();
+            RevenueCategory revenueCategory = (RevenueCategory) await _revenueCategoryRepository.GetByIdAsNoTrackingAsync(id);
+            RevenueCategoryResponse revenueCategoryResponse = _mapper.Map<RevenueCategoryResponse>(revenueCategory); 
+
+            return revenueCategoryResponse;
         }
 
         public async Task Update(UpdateRevenueCategoryRequest updateRevenueCategoryRequest)
         {
-            throw new NotImplementedException();
+            RevenueCategory revenueCategory = await _revenueCategoryRepository.GetByIdAsync(updateRevenueCategoryRequest.Id);
+
+            if (revenueCategory == null)
+                throw new BusinessException("Invalid Id");
+
+            revenueCategory.Update(updateRevenueCategoryRequest.Name, updateRevenueCategoryRequest.Description);
+
+            await _revenueCategoryRepository.UpdateAsync(revenueCategory);
         }
     }
 }
