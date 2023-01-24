@@ -24,7 +24,7 @@ namespace PersonalFinances.Application.Services
 
         public async Task Create(CreateUserRequest createUserRequest)
         {
-            User user = _mapper.Map<User>(createUserRequest);
+            User user = new User(createUserRequest.Username, createUserRequest.Email, createUserRequest.Password, 1);
             await _userRepository.AddAsync(user);
         }
 

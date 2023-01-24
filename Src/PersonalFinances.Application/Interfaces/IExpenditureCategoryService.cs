@@ -13,9 +13,9 @@ namespace PersonalFinances.Application.Interfaces
 
         Task<List<ExpenditureCategoryResponse>> GetAllExpenditureCategories();
 
-        Task<ExpenditureCategoryResponse> Create(CreateExpenditureCategoryRequest createExpenditureCategoryRequest);
+        Task Create(CreateExpenditureCategoryRequest createExpenditureCategoryRequest);
 
-        Task<ExpenditureCategoryResponse> Update(UpdateExpenditureCategoryRequest updateExpenditureCategoryRequest);
+        Task Update(UpdateExpenditureCategoryRequest updateExpenditureCategoryRequest);
 
         Task Delete(int id);
     }

@@ -13,9 +13,9 @@ namespace PersonalFinances.Application.Interfaces
 
         Task<List<RevenueCategoryResponse>> GetAllRevenueCategories();
 
-        Task<RevenueCategoryResponse> Create(CreateRevenueCategoryRequest createRevenueCategoryRequest);
+        Task Create(CreateRevenueCategoryRequest createRevenueCategoryRequest);
 
-        Task<RevenueCategoryResponse> Update(UpdateRevenueCategoryRequest updateRevenueCategoryRequest);
+        Task Update(UpdateRevenueCategoryRequest updateRevenueCategoryRequest);
 
         Task Delete(int id);
     }
