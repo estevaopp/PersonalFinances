@@ -13,8 +13,8 @@ namespace PersonalFinances.Application.Interfaces
 
         Task<List<UserRoleResponse>> GetAllUserRoles();
 
-        Task<UserRoleResponse> Create(CreateUserRoleRequest login);
+        Task<UserRoleResponse> Create(CreateUserRoleRequest createUserRoleRequest);
 
-        Task<UserRoleResponse> Update(UpdateUserRoleRequest login);
+        Task<UserRoleResponse> Update(UpdateUserRoleRequest updateUserRoleRequest);
     }
 }
