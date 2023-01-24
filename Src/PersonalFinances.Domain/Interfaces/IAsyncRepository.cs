@@ -10,6 +10,7 @@ namespace PersonalFinances.Domain.Interfaces
     public interface IAsyncRepository<T> where T : EntityBase
     {
         Task<T> GetByIdAsync(int id);
+        Task<T> GetByIdAsNoTrackingAsync(int id);
         Task<IEnumerable<T>> GetAllAsync();
         Task AddAsync(T entity);
         Task UpdateAsync(T entity);

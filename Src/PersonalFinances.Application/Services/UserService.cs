@@ -43,7 +43,7 @@ namespace PersonalFinances.Application.Services
 
         public async Task<UserResponse> GetUserById(int id)
         {
-            User user = (User) await _userRepository.GetByIdAsync(id);
+            User user = (User) await _userRepository.GetByIdAsNoTrackingAsync(id);
             UserResponse userResponse = _mapper.Map<UserResponse>(user); 
 
             return userResponse;

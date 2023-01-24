@@ -67,6 +67,11 @@ namespace PersonalFinances.Infra.Data.Repository
             return await _context.Set<T>().ToListAsync();
         }
 
+        public async Task<T> GetByIdAsNoTrackingAsync(int id)
+        {
+            return await _context.Set<T>().AsNoTracking().FirstOrDefaultAsync(x => x.Id == id);
+        }
+
         public async Task<T> GetByIdAsync(int id)
         {
             // return await _context.Set<T>().AsNoTracking().FirstOrDefaultAsync(x => x.Id == id);
