@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using PersonalFinances.Domain.Enums;
 using PersonalFinances.Domain.Exceptions;
+using Bcrypt = BCrypt.Net.BCrypt;
 
 namespace PersonalFinances.Domain.Entities
 {
@@ -37,7 +38,7 @@ namespace PersonalFinances.Domain.Entities
             ValidationEmail(email);
             Username = username;
             Email = email;
-            Password = password;
+            Password = HashPassword(password);
             IsEmailValid = false;
             UserRoleId = userRoleId;
             CreationDate = DateTime.Now;
@@ -51,6 +52,18 @@ namespace PersonalFinances.Domain.Entities
         public void UpdateUserRoleId(int userRoleId)
         {
             UserRoleId = userRoleId;
+        }
+
+
+        public bool IsValidLoginPassword(string password)
+        {
+            return Bcrypt.Verify(password, this.Password);
+        }
+
+
+        private string HashPassword(string password)
+        {
+            return Bcrypt.HashPassword(password, Bcrypt.GenerateSalt(12));
         }
 
 

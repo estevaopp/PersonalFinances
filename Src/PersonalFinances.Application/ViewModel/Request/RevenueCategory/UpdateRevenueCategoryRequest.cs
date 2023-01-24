@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace PersonalFinances.Application.ViewModel.Request.RevenueCategory
 {
-    public class RevenueCategoryRequest
+    public class UpdateRevenueCategoryRequest
     {
         
     }
