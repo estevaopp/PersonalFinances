@@ -17,8 +17,8 @@ namespace PersonalFinances.Application.Interfaces
 
         Task<List<UserResponse>> GetAllUsers();
 
-        Task<UserResponse> Create(CreateUserRequest login);
+        Task Create(CreateUserRequest createUserRequest);
 
-        Task<UserResponse> HardResetPassword();
+        Task HardResetPassword();
     }
 }

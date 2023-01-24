@@ -9,7 +9,7 @@ namespace PersonalFinances.Application.Interfaces
 {
     public interface IRevenueCategoryService
     {
-        Task<RevenueCategoryResponse> GetRevenueCategoryById();
+        Task<RevenueCategoryResponse> GetRevenueCategoryById(int id);
 
         Task<List<RevenueCategoryResponse>> GetAllRevenueCategories();
 

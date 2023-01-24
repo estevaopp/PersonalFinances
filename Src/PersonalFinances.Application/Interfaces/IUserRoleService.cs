@@ -9,12 +9,12 @@ namespace PersonalFinances.Application.Interfaces
 {
     public interface IUserRoleService
     {
-        Task<UserRoleResponse> GetUserRoleById();
+        Task<UserRoleResponse> GetUserRoleById(int id);
 
         Task<List<UserRoleResponse>> GetAllUserRoles();
 
-        Task<UserRoleResponse> Create(CreateUserRoleRequest createUserRoleRequest);
+        Task Create(CreateUserRoleRequest createUserRoleRequest);
 
-        Task<UserRoleResponse> Update(UpdateUserRoleRequest updateUserRoleRequest);
+        Task Update(UpdateUserRoleRequest updateUserRoleRequest);
     }
 }
