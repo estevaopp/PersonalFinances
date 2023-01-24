@@ -16,5 +16,7 @@ namespace PersonalFinances.Application.Interfaces
         Task<RevenueCategoryResponse> Create(CreateRevenueCategoryRequest createRevenueCategoryRequest);
 
         Task<RevenueCategoryResponse> Update(UpdateRevenueCategoryRequest updateRevenueCategoryRequest);
+
+        Task Delete(int id);
     }
 }

@@ -16,5 +16,7 @@ namespace PersonalFinances.Application.Interfaces
         Task Create(CreateUserRoleRequest createUserRoleRequest);
 
         Task Update(UpdateUserRoleRequest updateUserRoleRequest);
+
+        Task Delete(int id);
     }
 }

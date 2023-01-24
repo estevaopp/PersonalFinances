@@ -16,5 +16,7 @@ namespace PersonalFinances.Application.Interfaces
         Task<RevenueResponse> Create(CreateRevenueRequest createRevenueRequest);
 
         Task<RevenueResponse> Update(UpdateRevenueRequest updateRevenueRequest);
+
+        Task Delete(int id);
     }
 }

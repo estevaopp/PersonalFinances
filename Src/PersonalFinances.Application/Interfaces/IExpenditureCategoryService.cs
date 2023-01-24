@@ -16,5 +16,7 @@ namespace PersonalFinances.Application.Interfaces
         Task<ExpenditureCategoryResponse> Create(CreateExpenditureCategoryRequest createExpenditureCategoryRequest);
 
         Task<ExpenditureCategoryResponse> Update(UpdateExpenditureCategoryRequest updateExpenditureCategoryRequest);
+
+        Task Delete(int id);
     }
 }
