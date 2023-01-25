@@ -23,7 +23,6 @@ namespace PersonalFinances.Application.Services
             _revenueCategoryRepository = revenueCategoryRepository;
         }
 
-
         public async Task Create(CreateRevenueCategoryRequest createRevenueCategoryRequest)
         {
             RevenueCategory revenueCategory = new RevenueCategory(createRevenueCategoryRequest.Name, createRevenueCategoryRequest.Description);
