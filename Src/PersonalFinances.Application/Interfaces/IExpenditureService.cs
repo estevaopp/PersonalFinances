@@ -9,7 +9,7 @@ namespace PersonalFinances.Application.Interfaces
 {
     public interface IExpenditureService
     {
-        Task<ExpenditureResponse> GetExpenditureById();
+        Task<ExpenditureResponse> GetExpenditureById(int id);
 
         Task<List<ExpenditureResponse>> GetAllExpenditures();
 
