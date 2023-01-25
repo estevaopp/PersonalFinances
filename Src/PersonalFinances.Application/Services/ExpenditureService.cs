@@ -57,15 +57,15 @@ namespace PersonalFinances.Application.Services
             return expenditureResponse;
         }
 
-        public async Task Update(UpdateExpenditureRequest updateexpenditureRequest)
+        public async Task Update(UpdateExpenditureRequest updateExpenditureRequest)
         {
-            Expenditure expenditure = await _expenditureRepository.GetByIdAsync(updateexpenditureRequest.Id);
+            Expenditure expenditure = await _expenditureRepository.GetByIdAsync(updateExpenditureRequest.Id);
 
             if (expenditure == null)
                 throw new BusinessException("Invalid Id");
 
-            expenditure.Update(updateexpenditureRequest.Name, updateexpenditureRequest.ExpenditureCategoryId, updateexpenditureRequest.Date,
-                               updateexpenditureRequest.Value, updateexpenditureRequest.Description);
+            expenditure.Update(updateExpenditureRequest.Name, updateExpenditureRequest.ExpenditureCategoryId, updateExpenditureRequest.Date,
+                               updateExpenditureRequest.Value, updateExpenditureRequest.Description);
 
             await _expenditureRepository.UpdateAsync(expenditure);
         }
