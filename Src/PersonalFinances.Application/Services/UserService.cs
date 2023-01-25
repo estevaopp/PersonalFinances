@@ -24,7 +24,9 @@ namespace PersonalFinances.Application.Services
 
         public async Task Create(CreateUserRequest createUserRequest)
         {
-            User user = new User(createUserRequest.Username, createUserRequest.Email, createUserRequest.Password, 1);
+            int REGULAR_ROLE_ID = 1;
+
+            User user = new User(createUserRequest.Username, createUserRequest.Email, createUserRequest.Password, REGULAR_ROLE_ID);
             await _userRepository.AddAsync(user);
         }
 
