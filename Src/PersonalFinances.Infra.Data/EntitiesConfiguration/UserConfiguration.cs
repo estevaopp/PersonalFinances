@@ -23,6 +23,20 @@ public class UserConfiguration : IEntityTypeConfiguration<User>
         builder.Property(u => u.UserRoleId).IsRequired();
 
         builder.Property(u => u.IsEmailValid).IsRequired();
+
+        
+
+        builder.HasData
+        (
+            CreateAdmin()
+        );
+    }
+
+    private User CreateAdmin()
+    {
+        User user = new User("Admin", "admin@admin", "Admin123@", 2);
+        user.UpdateIsEmailValid();
+        return user;
     }
 }
 

@@ -18,6 +18,12 @@ namespace PersonalFinances.Infra.Data.EntitiesConfiguration
             builder.Property(u => u.Name).IsRequired().HasMaxLength(30);
 
             builder.Property(u => u.Description).IsRequired().HasMaxLength(60);
+
+            builder.HasData
+            (
+                new UserRole("Regular", "Usuario comum que tem acesso a coisas não administrativas e somente acesso a propria conta"),
+                new UserRole("Admin", "Usuario com acesso a tudo no sistema")
+            );
         }
     }
 }
