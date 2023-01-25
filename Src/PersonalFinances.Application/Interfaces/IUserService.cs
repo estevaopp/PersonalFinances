@@ -9,15 +9,11 @@ namespace PersonalFinances.Application.Interfaces
 {
     public interface IUserService
     {
-        Task<string> Login(LoginRequest login);
-
         Task<UserResponse> GetUserById(int id);
 
-        Task<UserResponse> GetMyUser();
+        Task<UserResponse> GetMyUser(int id);
 
         Task<List<UserResponse>> GetAllUsers();
-
-        Task Create(CreateUserRequest createUserRequest);
 
         Task HardResetPassword();
     }
