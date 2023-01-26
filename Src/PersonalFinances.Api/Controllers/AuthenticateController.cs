@@ -16,7 +16,7 @@ namespace PersonalFinances.Api.Controllers
     [Route("api/Account")]
     public class AuthenticateController : ControllerBase
     {
-        private readonly IAuthenticateService _authenticateService;
+        private IAuthenticateService _authenticateService;
         
         public AuthenticateController(IAuthenticateService authenticateService)
         {
@@ -33,7 +33,7 @@ namespace PersonalFinances.Api.Controllers
             if (!ModelState.IsValid)
                 return BadRequest(new BusinessException("Invalid Request", nameof(login), ErroEnum.ResourceBadRequest));
 
-            Token token = await _authenticateService.Login(login);
+            var token = await _authenticateService.Login(login);
 
             return Ok(token);
         }

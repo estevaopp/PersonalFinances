@@ -5,6 +5,6 @@ namespace PersonalFinances.Application.Interfaces
 {
     public interface ITokenService
     {
-        public Token GenerateToken(User user, IConfiguration configuration);
+        public Token GenerateToken(User user, string role, IConfiguration configuration);
     }
 }
