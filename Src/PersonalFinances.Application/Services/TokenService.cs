@@ -20,9 +20,9 @@ namespace PersonalFinances.Application.Services
                 (
                     new Claim[]
                     {
-                        new Claim("userId", user.Id.ToString()),
-                        new Claim("username", user.Username),
-                        new Claim("email", user.Email),
+                        new Claim("UserId", user.Id.ToString()),
+                        new Claim(ClaimTypes.Name, user.Username),
+                        new Claim(ClaimTypes.Email, user.Email),
                         new Claim(ClaimTypes.Role, role)
                     }
                 ),
