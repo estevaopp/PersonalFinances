@@ -21,7 +21,7 @@ namespace PersonalFinances.Infra.Data.EntitiesConfiguration
 
             builder.Property(e => e.Value).IsRequired().HasPrecision(18,2);
 
-            builder.Property(e => e.Description).IsRequired().HasMaxLength(60);
+            builder.Property(e => e.Description).IsRequired().HasMaxLength(100);
 
             builder.HasOne(e => e.User).WithMany(u => u.Expenditures).HasForeignKey(e => e.UserId);
             builder.Property(e => e.UserId).IsRequired();

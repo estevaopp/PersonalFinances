@@ -47,8 +47,8 @@ namespace PersonalFinances.Domain.Entities
             if(string.IsNullOrWhiteSpace(description))
                 throw new BusinessException("Este campo é obrigatório", nameof(Description), ErroEnum.ResourceInvalidField);
 
-            if (description.Length < 5 || description.Length > 60)
-                throw new BusinessException("A descrição deve ter entre 5 e 60 caracteres", nameof(Description), ErroEnum.ResourceInvalidField);
+            if (description.Length < 5 || description.Length > 100)
+                throw new BusinessException("A descrição deve ter entre 5 e 100 caracteres", nameof(Description), ErroEnum.ResourceInvalidField);
         }
     }
 }
