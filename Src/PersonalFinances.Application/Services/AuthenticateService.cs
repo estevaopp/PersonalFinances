@@ -17,7 +17,7 @@ namespace PersonalFinances.Application.Services
         {
             _userRepository = userRepository;
             _tokenService = tokenService;
-            configuration = _configuration;
+            _configuration = configuration;
         }
 
         public async Task<Token> Login(LoginRequest login)

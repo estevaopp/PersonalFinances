@@ -14,7 +14,5 @@ namespace PersonalFinances.Application.Interfaces
         Task<UserResponse> GetMyUser(int id);
 
         Task<List<UserResponse>> GetAllUsers();
-
-        Task HardResetPassword();
     }
 }

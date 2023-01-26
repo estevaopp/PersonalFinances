@@ -41,10 +41,5 @@ namespace PersonalFinances.Application.Services
 
             return userResponse;
         }
-
-        public async Task HardResetPassword()
-        {
-            throw new NotImplementedException();
-        }
     }
 }

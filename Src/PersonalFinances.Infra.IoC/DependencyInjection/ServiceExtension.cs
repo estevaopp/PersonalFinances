@@ -24,6 +24,10 @@ namespace PersonalFinances.Infra.IoC.DependencyInjection
 
             services.AddScoped<IExpenditureCategoryService, ExpenditureCategoryService>();
 
+            services.AddScoped<IAuthenticateService, AuthenticateService>();
+
+            services.AddScoped<ITokenService, TokenService>();
+
             return services;
         }
     }
