@@ -10,10 +10,16 @@ namespace PersonalFinances.Application.Services
 {
     public class TokenService : ITokenService
     {
-        public Token GenerateToken(User user, string role,IConfiguration configuration)
+        private readonly IConfiguration _configuration;
+        public TokenService(IConfiguration configuration)
+        {
+            _configuration = configuration;
+        }
+
+        public Token GenerateToken(User user, string role)
         {
             var tokenHandler = new JwtSecurityTokenHandler();
-            var key = Encoding.ASCII.GetBytes(configuration.GetSection("PersonalFinancesApiSecurityKey").Value);
+            var key = Encoding.ASCII.GetBytes(_configuration.GetSection("PersonalFinancesApiSecurityKey").Value);
             var tokenDescriptor = new SecurityTokenDescriptor()
             {
                 Subject = new ClaimsIdentity
@@ -21,7 +27,7 @@ namespace PersonalFinances.Application.Services
                     new Claim[]
                     {
                         new Claim("UserId", user.Id.ToString()),
-                        new Claim(ClaimTypes.Name, user.Username),
+                        new Claim("Username", user.Username),
                         new Claim(ClaimTypes.Email, user.Email),
                         new Claim(ClaimTypes.Role, role)
                     }
