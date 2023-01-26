@@ -9,14 +9,14 @@ namespace PersonalFinances.Application.Interfaces
 {
     public interface IRevenueService
     {
-        Task<RevenueResponse> GetRevenueById(int id);
+        Task<RevenueResponse> GetRevenueById(int id, int userId);
 
-        Task<List<RevenueResponse>> GetAllRevenues();
+        Task<List<RevenueResponse>> GetAllRevenues(int userId);
 
-        Task Create(CreateRevenueRequest createRevenueRequest);
+        Task Create(CreateRevenueRequest createRevenueRequest, int userId);
 
-        Task Update(UpdateRevenueRequest updateRevenueRequest);
+        Task Update(UpdateRevenueRequest updateRevenueRequest, int id, int userId);
 
-        Task Delete(int id);
+        Task Delete(int id, int userId);
     }
 }

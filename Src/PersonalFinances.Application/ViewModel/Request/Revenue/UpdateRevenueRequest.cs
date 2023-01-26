@@ -8,8 +8,6 @@ namespace PersonalFinances.Application.ViewModel.Request.Revenue
 {
     public class UpdateRevenueRequest
     {
-        public int Id { get; set; }
-
         [Required(ErrorMessage ="The Name is Required")]
         [MinLength(3)]
         [MaxLength(30)]
@@ -25,8 +23,6 @@ namespace PersonalFinances.Application.ViewModel.Request.Revenue
         [MinLength(3)]
         [MaxLength(60)]
         public string Description { get; set; }
-
-        public int UserId { get; set; }
 
         [Required(ErrorMessage ="The Revenue's Category is Required")]
         public int RevenueCategoryId { get; set; }

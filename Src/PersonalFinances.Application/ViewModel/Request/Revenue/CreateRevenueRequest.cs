@@ -24,8 +24,6 @@ namespace PersonalFinances.Application.ViewModel.Request.Revenue
         [MaxLength(60)]
         public string Description { get; set; }
 
-        public int UserId { get; set; }
-
         [Required(ErrorMessage ="The Revenue's Category is Required")]
         public int RevenueCategoryId { get; set; }
     }

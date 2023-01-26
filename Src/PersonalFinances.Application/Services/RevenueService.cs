@@ -24,16 +24,17 @@ namespace PersonalFinances.Application.Services
         }
 
 
-        public async Task Create(CreateRevenueRequest createRevenueRequest)
+        public async Task Create(CreateRevenueRequest createRevenueRequest, int userId)
         {
             Revenue revenue = new Revenue(createRevenueRequest.Name, createRevenueRequest.RevenueCategoryId, createRevenueRequest.Date,
-                                          createRevenueRequest.Value, createRevenueRequest.Description, 1);
+                                          createRevenueRequest.Value, createRevenueRequest.Description, userId);
+
             await _revenueRepository.AddAsync(revenue);
         }
 
-        public async Task Delete(int id)
+        public async Task Delete(int id, int userId)
         {
-            Revenue revenue = await _revenueRepository.GetByIdAsync(id);
+            Revenue revenue = (Revenue) (await _revenueRepository.FindByAsync(x => x.UserId == userId && x.Id == id)).FirstOrDefault();
 
             if (revenue == null)
                 throw new BusinessException("Invalid Id");
@@ -41,7 +42,7 @@ namespace PersonalFinances.Application.Services
             await _revenueRepository.DeleteAsync(revenue);
         }
 
-        public async Task<List<RevenueResponse>> GetAllRevenues()
+        public async Task<List<RevenueResponse>> GetAllRevenues(int userId)
         {
             List<Revenue> revenues = (List<Revenue>) await _revenueRepository.GetAllAsync();
             List<RevenueResponse> revenueResponses = _mapper.Map<List<RevenueResponse>>(revenues); 
@@ -49,17 +50,17 @@ namespace PersonalFinances.Application.Services
             return revenueResponses;
         }
 
-        public async Task<RevenueResponse> GetRevenueById(int id)
+        public async Task<RevenueResponse> GetRevenueById(int id, int userId)
         {
-            Revenue revenue = (Revenue) await _revenueRepository.GetByIdAsNoTrackingAsync(id);
+            Revenue revenue = (Revenue) (await _revenueRepository.FindByAsync(x => x.UserId == userId && x.Id == id)).FirstOrDefault();
             RevenueResponse revenueResponse = _mapper.Map<RevenueResponse>(revenue); 
 
             return revenueResponse;
         }
 
-        public async Task Update(UpdateRevenueRequest updateRevenueRequest)
+        public async Task Update(UpdateRevenueRequest updateRevenueRequest, int id, int userId)
         {
-            Revenue revenue = await _revenueRepository.GetByIdAsync(updateRevenueRequest.Id);
+            Revenue revenue = (Revenue) (await _revenueRepository.FindByAsync(x => x.UserId == userId && x.Id == id)).FirstOrDefault();
 
             if (revenue == null)
                 throw new BusinessException("Invalid Id");
