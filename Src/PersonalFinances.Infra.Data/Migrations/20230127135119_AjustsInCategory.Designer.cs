@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using PersonalFinances.Infra.Data.Context;
@@ -11,9 +12,11 @@ using PersonalFinances.Infra.Data.Context;
 namespace PersonalFinances.Infra.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230127135119_AjustsInCategory")]
+    partial class AjustsInCategory
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -87,7 +90,7 @@ namespace PersonalFinances.Infra.Data.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("ExpenditureCategory");
+                    b.ToTable("ExpenditureCategories");
                 });
 
             modelBuilder.Entity("PersonalFinances.Domain.Entities.Revenue", b =>
@@ -155,7 +158,7 @@ namespace PersonalFinances.Infra.Data.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("RevenueCategorys");
+                    b.ToTable("RevenueCategories");
                 });
 
             modelBuilder.Entity("PersonalFinances.Domain.Entities.User", b =>
