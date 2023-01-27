@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using PersonalFinances.Domain.Enums;
 using PersonalFinances.Domain.Exceptions;
@@ -24,12 +25,16 @@ namespace PersonalFinances.Domain.Entities
 
         public virtual UserRole UserRole { get; private set; }
 
+        [JsonIgnore]
         public virtual List<Revenue> Revenues { get; private set; }
 
+        [JsonIgnore]
         public virtual List<Expenditure> Expenditures { get; private set; }
 
+        [JsonIgnore]
         public virtual List<RevenueCategory> RevenueCategories { get; private set; }
 
+        [JsonIgnore]
         public virtual List<ExpenditureCategory> ExpenditureCategories { get; private set; }
 
 

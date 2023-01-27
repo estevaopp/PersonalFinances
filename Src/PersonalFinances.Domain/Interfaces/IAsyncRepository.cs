@@ -12,6 +12,7 @@ namespace PersonalFinances.Domain.Interfaces
         Task<T> GetByIdAsync(int id);
         Task<T> GetByIdAsNoTrackingAsync(int id);
         Task<IEnumerable<T>> GetAllAsync();
+        Task<IEnumerable<T>> GetAllAsNoTrackingAsync();
         Task AddAsync(T entity);
         Task UpdateAsync(T entity);
         Task DeleteAsync(T entity);

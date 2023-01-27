@@ -44,7 +44,7 @@ namespace PersonalFinances.Application.Services
 
         public async Task<List<RevenueResponse>> GetAllRevenues(int userId)
         {
-            List<Revenue> revenues = (List<Revenue>) await _revenueRepository.FindByAsNoTrackingAsync(x => x.UserId == userId);
+            List<Revenue> revenues = (List<Revenue>) await _revenueRepository.FindByAsync(x => x.UserId == userId);
             List<RevenueResponse> revenueResponses = _mapper.Map<List<RevenueResponse>>(revenues); 
 
             return revenueResponses;
@@ -52,7 +52,7 @@ namespace PersonalFinances.Application.Services
 
         public async Task<RevenueResponse> GetRevenueById(int id, int userId)
         {
-            Revenue revenue = (Revenue) (await _revenueRepository.FindByAsNoTrackingAsync(x => x.UserId == userId && x.Id == id)).FirstOrDefault();
+            Revenue revenue = (Revenue) (await _revenueRepository.FindByAsync(x => x.UserId == userId && x.Id == id)).FirstOrDefault();
             RevenueResponse revenueResponse = _mapper.Map<RevenueResponse>(revenue); 
 
             return revenueResponse;

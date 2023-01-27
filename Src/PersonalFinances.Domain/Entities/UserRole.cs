@@ -1,5 +1,6 @@
 
 
+using System.Text.Json.Serialization;
 using PersonalFinances.Domain.Enums;
 using PersonalFinances.Domain.Exceptions;
 
@@ -12,6 +13,7 @@ namespace PersonalFinances.Domain.Entities
 
         public string Description { get; private set; }
         
+        [JsonIgnore]
         public virtual List<User> Users { get; private set; }
 
         protected UserRole() { }

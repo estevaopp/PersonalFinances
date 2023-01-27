@@ -25,7 +25,7 @@ namespace PersonalFinances.Application.Services
 
         public async Task<List<UserRoleResponse>> GetAllUserRoles()
         {
-            List<UserRole> userRoles = (List<UserRole>) await _userRoleRepository.GetAllAsync();
+            List<UserRole> userRoles = (List<UserRole>) await _userRoleRepository.GetAllAsNoTrackingAsync();
             List<UserRoleResponse> userRoleResponses = _mapper.Map<List<UserRoleResponse>>(userRoles); 
 
             return userRoleResponses;

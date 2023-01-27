@@ -43,7 +43,7 @@ namespace PersonalFinances.Application.Services
 
         public async Task<List<ExpenditureResponse>> GetAllExpenditures(int userId)
         {
-            List<Expenditure> expenditures = (List<Expenditure>) await _expenditureRepository.FindByAsNoTrackingAsync(x => x.UserId == userId);
+            List<Expenditure> expenditures = (List<Expenditure>) await _expenditureRepository.FindByAsync(x => x.UserId == userId);
             List<ExpenditureResponse> expenditureResponses = _mapper.Map<List<ExpenditureResponse>>(expenditures); 
 
             return expenditureResponses;
@@ -51,7 +51,7 @@ namespace PersonalFinances.Application.Services
 
         public async Task<ExpenditureResponse> GetExpenditureById(int id, int userId)
         {
-            Expenditure expenditure = (Expenditure) (await _expenditureRepository.FindByAsNoTrackingAsync(x => x.UserId == userId && x.Id == id)).FirstOrDefault();
+            Expenditure expenditure = (Expenditure) (await _expenditureRepository.FindByAsync(x => x.UserId == userId && x.Id == id)).FirstOrDefault();
             ExpenditureResponse expenditureResponse = _mapper.Map<ExpenditureResponse>(expenditure); 
 
             return expenditureResponse;

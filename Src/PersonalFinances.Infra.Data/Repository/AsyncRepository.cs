@@ -83,6 +83,11 @@ namespace PersonalFinances.Infra.Data.Repository
             return await _context.Set<T>().ToListAsync();
         }
 
+        public async Task<IEnumerable<T>> GetAllAsNoTrackingAsync()
+        {
+            return await _context.Set<T>().AsNoTracking().ToListAsync();
+        }
+
         public async Task<T> GetByIdAsNoTrackingAsync(int id)
         {
             return await _context.Set<T>().AsNoTracking().FirstOrDefaultAsync(x => x.Id == id);
@@ -90,7 +95,6 @@ namespace PersonalFinances.Infra.Data.Repository
 
         public async Task<T> GetByIdAsync(int id)
         {
-            // return await _context.Set<T>().AsNoTracking().FirstOrDefaultAsync(x => x.Id == id);
             return await _context.Set<T>().FirstOrDefaultAsync(x => x.Id == id);
         }
 

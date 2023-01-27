@@ -20,14 +20,15 @@ namespace PersonalFinances.Application.Services
         public async Task<List<UserResponse>> GetAllUsers()
         {
             List<User> users = (List<User>) await _userRepository.FindByAsync(include: x => x.UserRole);
-            List<UserResponse> userResponses = _mapper.Map<List<UserResponse>>(users); 
+
+            List<UserResponse> userResponses = _mapper.Map<List<UserResponse>>(users);
 
             return userResponses;
         }
 
         public async Task<UserResponse> GetMyUser(int id)
         {
-            User user = await _userRepository.GetByIdAsNoTrackingAsync(id);
+            User user = await _userRepository.GetByIdAsync(id);
             
             UserResponse userResponse = _mapper.Map<UserResponse>(user);
 
@@ -36,7 +37,7 @@ namespace PersonalFinances.Application.Services
 
         public async Task<UserResponse> GetUserById(int id)
         {
-            User user = (User) await _userRepository.GetByIdAsNoTrackingAsync(id);
+            User user = (User) await _userRepository.GetByIdAsync(id);
             UserResponse userResponse = _mapper.Map<UserResponse>(user); 
 
             return userResponse;
