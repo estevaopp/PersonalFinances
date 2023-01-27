@@ -17,7 +17,7 @@ namespace PersonalFinances.Application.ViewModel.Response
 
         public bool IsEmailValid { get; set; }
 
-        public DateTime CreationDate { get; }
+        public DateTime CreationDate { get; set; }
 
         public int UserRoleId { get; set; }
 

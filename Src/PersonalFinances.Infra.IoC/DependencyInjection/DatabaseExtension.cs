@@ -14,7 +14,7 @@ namespace PersonalFinances.Infra.IoC.DependencyInjection
         public static IServiceCollection AddDbConfiguration(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseNpgsql(configuration.GetConnectionString("DefaultConnection"), 
+                options.UseLazyLoadingProxies().UseNpgsql(configuration.GetConnectionString("DefaultConnection"), 
                                   b => b.MigrationsAssembly(typeof(ApplicationDbContext).Assembly.FullName))
             );
             

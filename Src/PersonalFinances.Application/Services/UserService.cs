@@ -19,7 +19,7 @@ namespace PersonalFinances.Application.Services
 
         public async Task<List<UserResponse>> GetAllUsers()
         {
-            List<User> users = (List<User>) await _userRepository.GetAllAsync();
+            List<User> users = (List<User>) await _userRepository.FindByAsync(include: x => x.UserRole);
             List<UserResponse> userResponses = _mapper.Map<List<UserResponse>>(users); 
 
             return userResponses;

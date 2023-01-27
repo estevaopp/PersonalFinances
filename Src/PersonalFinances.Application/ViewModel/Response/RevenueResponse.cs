@@ -21,6 +21,6 @@ namespace PersonalFinances.Application.ViewModel.Response
 
         public int RevenueCategoryId { get; set; }
 
-        public virtual RevenueCategory RevenueCategory { get; private set; }
+        public virtual RevenueCategory RevenueCategory { get; set; }
     }
 }

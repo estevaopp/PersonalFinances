@@ -17,7 +17,7 @@ namespace PersonalFinances.Domain.Entities
 
         public virtual User User { get; private set; }
 
-        public List<Revenue> Revenues { get; private set; }
+        public virtual List<Revenue> Revenues { get; private set; }
 
 
         protected RevenueCategory() { }

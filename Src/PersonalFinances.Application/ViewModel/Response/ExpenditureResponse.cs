@@ -21,8 +21,8 @@ namespace PersonalFinances.Application.ViewModel.Response
 
         public int UserId { get; set; }
 
-        public int ExpenditureCategoryId { get; private set; }
+        public int ExpenditureCategoryId { get; set; }
 
-        public virtual ExpenditureCategory ExpenditureCategory { get; private set; }
+        public virtual ExpenditureCategory ExpenditureCategory { get; set; }
     }
 }

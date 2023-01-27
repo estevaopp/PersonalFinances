@@ -19,7 +19,7 @@ namespace PersonalFinances.Domain.Entities
 
         public int UserId { get; private set; }
 
-        public User User { get; private set; }
+        public virtual User User { get; private set; }
 
         public int RevenueCategoryId { get; private set; }
 
