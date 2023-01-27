@@ -2,13 +2,17 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using PersonalFinances.Application.Interfaces;
 using PersonalFinances.Application.ViewModel.Request.Expenditure;
 using PersonalFinances.Application.ViewModel.Response;
+using PersonalFinances.Domain.Enums;
+using PersonalFinances.Domain.Exceptions;
 
 namespace PersonalFinances.Api.Controllers
 {
+    [Authorize()]
     [ApiController]
     [Route("api/[controller]")]
     public class ExpenditureController : ControllerBase
@@ -53,6 +57,12 @@ namespace PersonalFinances.Api.Controllers
         [Route("")]
         public async Task<ActionResult> Create(CreateExpenditureRequest createExpenditureRequest)
         {
+            if (createExpenditureRequest == null)
+                throw new ArgumentNullException(nameof(createExpenditureRequest));
+            
+            if (!ModelState.IsValid)
+                return BadRequest(new BusinessException("Invalid Request", nameof(CreateExpenditureRequest), ErroEnum.ResourceBadRequest));
+
             int userId = int.Parse(User.Claims.FirstOrDefault(x => x.Type == "UserId").Value);
 
             await _expenditureService.Create(createExpenditureRequest, userId);
@@ -64,6 +74,12 @@ namespace PersonalFinances.Api.Controllers
         [Route("{id:int}")]
         public async Task<ActionResult> Update(UpdateExpenditureRequest updateExpenditureRequest, int id)
         {
+            if (updateExpenditureRequest == null)
+                throw new ArgumentNullException(nameof(updateExpenditureRequest));
+            
+            if (!ModelState.IsValid)
+                return BadRequest(new BusinessException("Invalid Request", nameof(UpdateExpenditureRequest), ErroEnum.ResourceBadRequest));
+
             int userId = int.Parse(User.Claims.FirstOrDefault(x => x.Type == "UserId").Value);
 
             await _expenditureService.Update(updateExpenditureRequest, id, userId);

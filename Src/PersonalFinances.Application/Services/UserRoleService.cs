@@ -45,9 +45,9 @@ namespace PersonalFinances.Application.Services
             await _userRoleRepository.AddAsync(userRole);
         }
 
-        public async Task Update(UpdateUserRoleRequest updateUserRoleRequest)
+        public async Task Update(UpdateUserRoleRequest updateUserRoleRequest, int id)
         {
-            UserRole userRole = await _userRoleRepository.GetByIdAsync(updateUserRoleRequest.Id);
+            UserRole userRole = await _userRoleRepository.GetByIdAsync(id);
 
             if (userRole == null)
                 throw new BusinessException("Invalid Id");

@@ -8,8 +8,6 @@ namespace PersonalFinances.Application.ViewModel.Request.UserRole
 {
     public class UpdateUserRoleRequest
     {
-        public int Id { get; set; }
-
         [Required(ErrorMessage ="The Name is Required")]
         [MinLength(3)]
         [MaxLength(30)]

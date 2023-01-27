@@ -31,7 +31,7 @@ namespace PersonalFinances.Api.Controllers
                 throw new ArgumentNullException(nameof(login));
             
             if (!ModelState.IsValid)
-                return BadRequest(new BusinessException("Invalid Request", nameof(login), ErroEnum.ResourceBadRequest));
+                return BadRequest(new BusinessException("Invalid Request", nameof(LoginRequest), ErroEnum.ResourceBadRequest));
 
             var token = await _authenticateService.Login(login);
 
@@ -46,7 +46,7 @@ namespace PersonalFinances.Api.Controllers
                 throw new ArgumentNullException(nameof(createUser));
             
             if (!ModelState.IsValid)
-                return BadRequest(new BusinessException("Invalid Request", nameof(createUser), ErroEnum.ResourceBadRequest));
+                return BadRequest(new BusinessException("Invalid Request", nameof(CreateUserRequest), ErroEnum.ResourceBadRequest));
 
             await _authenticateService.Register(createUser);
 

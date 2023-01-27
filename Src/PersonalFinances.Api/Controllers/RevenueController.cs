@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Mvc;
 using PersonalFinances.Application.Interfaces;
 using PersonalFinances.Application.ViewModel.Request.Revenue;
 using PersonalFinances.Application.ViewModel.Response;
+using PersonalFinances.Domain.Enums;
+using PersonalFinances.Domain.Exceptions;
 
 namespace PersonalFinances.Api.Controllers
 {
@@ -55,6 +57,12 @@ namespace PersonalFinances.Api.Controllers
         [Route("")]
         public async Task<ActionResult> Create(CreateRevenueRequest createRevenueRequest)
         {
+            if (createRevenueRequest == null)
+                throw new ArgumentNullException(nameof(createRevenueRequest));
+            
+            if (!ModelState.IsValid)
+                return BadRequest(new BusinessException("Invalid Request", nameof(CreateRevenueRequest), ErroEnum.ResourceBadRequest));
+
             int userId = int.Parse(User.Claims.FirstOrDefault(x => x.Type == "UserId").Value);
 
             await _revenueService.Create(createRevenueRequest, userId);
@@ -66,6 +74,12 @@ namespace PersonalFinances.Api.Controllers
         [Route("{id:int}")]
         public async Task<ActionResult> Update(UpdateRevenueRequest updateRevenueRequest, int id)
         {
+            if (updateRevenueRequest == null)
+                throw new ArgumentNullException(nameof(updateRevenueRequest));
+            
+            if (!ModelState.IsValid)
+                return BadRequest(new BusinessException("Invalid Request", nameof(UpdateRevenueRequest), ErroEnum.ResourceBadRequest));
+
             int userId = int.Parse(User.Claims.FirstOrDefault(x => x.Type == "UserId").Value);
 
             await _revenueService.Update(updateRevenueRequest, id, userId);
