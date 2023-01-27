@@ -24,16 +24,16 @@ namespace PersonalFinances.Application.Services
         }
 
 
-        public async Task Create(CreateExpenditureRequest createExpenditureRequest)
+        public async Task Create(CreateExpenditureRequest createExpenditureRequest, int userId)
         {
             Expenditure expenditure = new Expenditure(createExpenditureRequest.Name, createExpenditureRequest.ExpenditureCategoryId, createExpenditureRequest.Date,
-                                                      createExpenditureRequest.Value, createExpenditureRequest.Description, 1);
+                                                      createExpenditureRequest.Value, createExpenditureRequest.Description, userId);
             await _expenditureRepository.AddAsync(expenditure);
         }
 
-        public async Task Delete(int id)
+        public async Task Delete(int id, int userId)
         {
-            Expenditure expenditure = await _expenditureRepository.GetByIdAsync(id);
+            Expenditure expenditure = (await _expenditureRepository.FindByAsync(x => x.UserId == userId && x.Id == id)).FirstOrDefault();
 
             if (expenditure == null)
                 throw new BusinessException("Invalid Id");
@@ -41,25 +41,25 @@ namespace PersonalFinances.Application.Services
             await _expenditureRepository.DeleteAsync(expenditure);
         }
 
-        public async Task<List<ExpenditureResponse>> GetAllExpenditures()
+        public async Task<List<ExpenditureResponse>> GetAllExpenditures(int userId)
         {
-            List<Expenditure> expenditures = (List<Expenditure>) await _expenditureRepository.GetAllAsync();
+            List<Expenditure> expenditures = (List<Expenditure>) await _expenditureRepository.FindByAsNoTrackingAsync(x => x.UserId == userId);
             List<ExpenditureResponse> expenditureResponses = _mapper.Map<List<ExpenditureResponse>>(expenditures); 
 
             return expenditureResponses;
         }
 
-        public async Task<ExpenditureResponse> GetExpenditureById(int id)
+        public async Task<ExpenditureResponse> GetExpenditureById(int id, int userId)
         {
-            Expenditure expenditure = (Expenditure) await _expenditureRepository.GetByIdAsNoTrackingAsync(id);
+            Expenditure expenditure = (Expenditure) (await _expenditureRepository.FindByAsNoTrackingAsync(x => x.UserId == userId && x.Id == id)).FirstOrDefault();
             ExpenditureResponse expenditureResponse = _mapper.Map<ExpenditureResponse>(expenditure); 
 
             return expenditureResponse;
         }
 
-        public async Task Update(UpdateExpenditureRequest updateExpenditureRequest)
+        public async Task Update(UpdateExpenditureRequest updateExpenditureRequest, int id, int userId)
         {
-            Expenditure expenditure = await _expenditureRepository.GetByIdAsync(updateExpenditureRequest.Id);
+            Expenditure expenditure = (await _expenditureRepository.FindByAsync(x => x.UserId == userId && x.Id == id)).FirstOrDefault();
 
             if (expenditure == null)
                 throw new BusinessException("Invalid Id");

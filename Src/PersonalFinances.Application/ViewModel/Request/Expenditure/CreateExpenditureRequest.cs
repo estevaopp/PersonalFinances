@@ -24,8 +24,6 @@ namespace PersonalFinances.Application.ViewModel.Request.Expenditure
         [MaxLength(60)]
         public string Description { get; set; }
 
-        public int UserId { get; set; }
-
         public int ExpenditureCategoryId { get; set; }
     }
 }

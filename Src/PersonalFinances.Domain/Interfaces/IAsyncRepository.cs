@@ -15,8 +15,10 @@ namespace PersonalFinances.Domain.Interfaces
         Task AddAsync(T entity);
         Task UpdateAsync(T entity);
         Task DeleteAsync(T entity);
-        // Task<IEnumerable<T>> FindByAsync(Expression<Func<T, bool>> predicate);
         Task<IEnumerable<T>> FindByAsync(Expression<Func<T, bool>> filter = null, 
+                                         Expression<Func<T, object>> orderBy = null, 
+                                         Expression<Func<T, object>> include = null);
+        Task<IEnumerable<T>> FindByAsNoTrackingAsync(Expression<Func<T, bool>> filter = null, 
                                          Expression<Func<T, object>> orderBy = null, 
                                          Expression<Func<T, object>> include = null);
         Task<IEnumerable<T>> ExecProcedureAsync(string procedure, List<string> parameters);

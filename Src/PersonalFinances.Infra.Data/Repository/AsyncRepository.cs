@@ -44,6 +44,22 @@ namespace PersonalFinances.Infra.Data.Repository
             return await query.ToListAsync();
         }
 
+        public async Task<IEnumerable<T>> FindByAsNoTrackingAsync(Expression<Func<T, bool>> filter = null, Expression<Func<T, object>> orderBy = null, Expression<Func<T, object>> include = null)
+        {
+            IQueryable<T> query = _context.Set<T>();
+
+            if (filter != null)
+                query.Where(filter);
+            
+            if (include != null)
+                query.Include(include);
+            
+            if (orderBy != null)
+                query.OrderBy(orderBy);
+
+            return await query.AsNoTracking().ToListAsync();
+        }
+
         public async Task<IEnumerable<T>> FindByAsync(Expression<Func<T, bool>> filter = null, 
                                                       Expression<Func<T, object>> orderBy = null, 
                                                       Expression<Func<T, object>> include = null)
@@ -59,7 +75,7 @@ namespace PersonalFinances.Infra.Data.Repository
             if (orderBy != null)
                 query.OrderBy(orderBy);
 
-            return await query.AsNoTracking().ToListAsync();
+            return await query.ToListAsync();
         }
 
         public async Task<IEnumerable<T>> GetAllAsync()
