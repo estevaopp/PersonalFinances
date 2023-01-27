@@ -23,15 +23,15 @@ namespace PersonalFinances.Application.Services
             _revenueCategoryRepository = revenueCategoryRepository;
         }
 
-        public async Task Create(CreateRevenueCategoryRequest createRevenueCategoryRequest)
+        public async Task Create(CreateRevenueCategoryRequest createRevenueCategoryRequest, int userId)
         {
-            RevenueCategory revenueCategory = new RevenueCategory(createRevenueCategoryRequest.Name, createRevenueCategoryRequest.Description);
+            RevenueCategory revenueCategory = new RevenueCategory(createRevenueCategoryRequest.Name, createRevenueCategoryRequest.Description, userId);
             await _revenueCategoryRepository.AddAsync(revenueCategory);
         }
 
-        public async Task Delete(int id)
+        public async Task Delete(int id, int userId)
         {
-            RevenueCategory revenueCategory = await _revenueCategoryRepository.GetByIdAsync(id);
+            RevenueCategory revenueCategory = (await _revenueCategoryRepository.FindByAsync(x => x.UserId == userId && x.Id == id)).FirstOrDefault();
 
             if (revenueCategory == null)
                 throw new BusinessException("Invalid Id");
@@ -39,25 +39,25 @@ namespace PersonalFinances.Application.Services
             await _revenueCategoryRepository.DeleteAsync(revenueCategory);
         }
 
-        public async Task<List<RevenueCategoryResponse>> GetAllRevenueCategories()
+        public async Task<List<RevenueCategoryResponse>> GetAllRevenueCategories(int userId)
         {
-            List<RevenueCategory> revenueCategories = (List<RevenueCategory>) await _revenueCategoryRepository.GetAllAsync();
+            List<RevenueCategory> revenueCategories = (List<RevenueCategory>) await _revenueCategoryRepository.FindByAsNoTrackingAsync(x => x.UserId == userId);
             List<RevenueCategoryResponse> revenueCategoryResponses = _mapper.Map<List<RevenueCategoryResponse>>(revenueCategories); 
 
             return revenueCategoryResponses;
         }
 
-        public async Task<RevenueCategoryResponse> GetRevenueCategoryById(int id)
+        public async Task<RevenueCategoryResponse> GetRevenueCategoryById(int id, int userId)
         {
-            RevenueCategory revenueCategory = (RevenueCategory) await _revenueCategoryRepository.GetByIdAsNoTrackingAsync(id);
+            RevenueCategory revenueCategory = (RevenueCategory) (await _revenueCategoryRepository.FindByAsNoTrackingAsync(x => x.UserId == userId && x.Id == id)).FirstOrDefault();
             RevenueCategoryResponse revenueCategoryResponse = _mapper.Map<RevenueCategoryResponse>(revenueCategory); 
 
             return revenueCategoryResponse;
         }
 
-        public async Task Update(UpdateRevenueCategoryRequest updateRevenueCategoryRequest)
+        public async Task Update(UpdateRevenueCategoryRequest updateRevenueCategoryRequest, int id, int userId)
         {
-            RevenueCategory revenueCategory = await _revenueCategoryRepository.GetByIdAsync(updateRevenueCategoryRequest.Id);
+            RevenueCategory revenueCategory = (await _revenueCategoryRepository.FindByAsync(x => x.UserId == userId && x.Id == id)).FirstOrDefault();
 
             if (revenueCategory == null)
                 throw new BusinessException("Invalid Id");

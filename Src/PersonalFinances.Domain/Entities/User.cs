@@ -28,6 +28,10 @@ namespace PersonalFinances.Domain.Entities
 
         public virtual List<Expenditure> Expenditures { get; private set; }
 
+        public virtual List<RevenueCategory> RevenueCategories { get; private set; }
+
+        public virtual List<ExpenditureCategory> ExpenditureCategories { get; private set; }
+
 
         protected User() { }
 

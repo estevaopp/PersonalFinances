@@ -16,7 +16,7 @@ namespace PersonalFinances.Domain.Tests.UnitTest.Entities
         public void CreateExpenditureCategory_ReturnSucess_CommandValid(string name, string description)
         {
             // Arrange
-            var expenditureCategory = new ExpenditureCategory(name, description);
+            var expenditureCategory = new ExpenditureCategory(name, description, 1);
 
             // Act
             
@@ -40,7 +40,7 @@ namespace PersonalFinances.Domain.Tests.UnitTest.Entities
             
 
             // Assert
-            Assert.Throws<BusinessException>(() => new ExpenditureCategory(name, description));
+            Assert.Throws<BusinessException>(() => new ExpenditureCategory(name, description, 1));
         }
 
 
@@ -50,7 +50,7 @@ namespace PersonalFinances.Domain.Tests.UnitTest.Entities
         public void UpdateExpenditureCategory_ReturnSucess_CommandValid(string name, string description)
         {
             // Arrange
-            var expenditureCategory = new ExpenditureCategory("Jorge", "luxo do luxo");
+            var expenditureCategory = new ExpenditureCategory("Jorge", "luxo do luxo", 1);
 
             // Act
             expenditureCategory.Update(name, description);
@@ -70,7 +70,7 @@ namespace PersonalFinances.Domain.Tests.UnitTest.Entities
         public void UpdateExpenditureCategory_ReturnBusinessException_CommandInvalid(string name, string description)
         {
             // Arrange
-            var expenditureCategory = new ExpenditureCategory("Jorge", "luxo do luxo");
+            var expenditureCategory = new ExpenditureCategory("Jorge", "luxo do luxo", 1);
 
             // Act
             

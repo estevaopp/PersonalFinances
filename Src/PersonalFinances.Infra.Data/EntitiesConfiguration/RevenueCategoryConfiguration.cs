@@ -18,6 +18,9 @@ namespace PersonalFinances.Infra.Data.EntitiesConfiguration
             builder.Property(r => r.Name).IsRequired().HasMaxLength(30);
 
             builder.Property(r => r.Description).IsRequired().HasMaxLength(100);
+
+            builder.HasOne(r => r.User).WithMany(u => u.RevenueCategories).HasForeignKey(r => r.UserId);
+            builder.Property(r => r.UserId).IsRequired();
         }
     }
 }

@@ -16,7 +16,7 @@ namespace PersonalFinances.Domain.Tests.UnitTest.Entities
         public void CreateRevenueCategory_ReturnSucess_CommandValid(string name, string description)
         {
             // Arrange
-            var revenueCategory = new RevenueCategory(name, description);
+            var revenueCategory = new RevenueCategory(name, description, 1);
 
             // Act
             
@@ -40,7 +40,7 @@ namespace PersonalFinances.Domain.Tests.UnitTest.Entities
             
 
             // Assert
-            Assert.Throws<BusinessException>(() => new RevenueCategory(name, description));
+            Assert.Throws<BusinessException>(() => new RevenueCategory(name, description, 1));
         }
 
 
@@ -50,7 +50,7 @@ namespace PersonalFinances.Domain.Tests.UnitTest.Entities
         public void UpdateRevenueCategory_ReturnSucess_CommandValid(string name, string description)
         {
             // Arrange
-            var revenueCategory = new RevenueCategory("Jorge", "luxo do luxo");
+            var revenueCategory = new RevenueCategory("Jorge", "luxo do luxo", 1);
 
             // Act
             revenueCategory.Update(name, description);
@@ -70,7 +70,7 @@ namespace PersonalFinances.Domain.Tests.UnitTest.Entities
         public void UpdateRevenueCategory_ReturnBusinessException_CommandInvalid(string name, string description)
         {
             // Arrange
-            var revenueCategory = new RevenueCategory("Jorge", "luxo do luxo");
+            var revenueCategory = new RevenueCategory("Jorge", "luxo do luxo", 1);
 
             // Act
             

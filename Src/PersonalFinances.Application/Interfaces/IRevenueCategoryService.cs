@@ -9,14 +9,14 @@ namespace PersonalFinances.Application.Interfaces
 {
     public interface IRevenueCategoryService
     {
-        Task<RevenueCategoryResponse> GetRevenueCategoryById(int id);
+        Task<RevenueCategoryResponse> GetRevenueCategoryById(int id, int userId);
 
-        Task<List<RevenueCategoryResponse>> GetAllRevenueCategories();
+        Task<List<RevenueCategoryResponse>> GetAllRevenueCategories(int userId);
 
-        Task Create(CreateRevenueCategoryRequest createRevenueCategoryRequest);
+        Task Create(CreateRevenueCategoryRequest createRevenueCategoryRequest, int userId);
 
-        Task Update(UpdateRevenueCategoryRequest updateRevenueCategoryRequest);
+        Task Update(UpdateRevenueCategoryRequest updateRevenueCategoryRequest, int id, int userId);
 
-        Task Delete(int id);
+        Task Delete(int id, int userId);
     }
 }

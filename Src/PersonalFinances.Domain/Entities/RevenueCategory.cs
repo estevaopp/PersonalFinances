@@ -13,17 +13,22 @@ namespace PersonalFinances.Domain.Entities
 
         public string Description { get; private set; }
 
+        public int UserId { get; private set;}
+
+        public virtual User User { get; private set; }
+
         public List<Revenue> Revenues { get; private set; }
 
 
         protected RevenueCategory() { }
 
-        public RevenueCategory(string name, string description)
+        public RevenueCategory(string name, string description, int userId)
         {
             ValidationName(name);
             ValidationDescription(description);
             Name = name;
             Description = description;
+            UserId = userId;
         }
 
         public void Update(string name, string description)

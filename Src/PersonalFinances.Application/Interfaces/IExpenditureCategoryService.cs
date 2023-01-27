@@ -9,14 +9,14 @@ namespace PersonalFinances.Application.Interfaces
 {
     public interface IExpenditureCategoryService
     {
-        Task<ExpenditureCategoryResponse> GetExpenditureCategoryById(int id);
+        Task<ExpenditureCategoryResponse> GetExpenditureCategoryById(int id, int userId);
 
-        Task<List<ExpenditureCategoryResponse>> GetAllExpenditureCategories();
+        Task<List<ExpenditureCategoryResponse>> GetAllExpenditureCategories(int userId);
 
-        Task Create(CreateExpenditureCategoryRequest createExpenditureCategoryRequest);
+        Task Create(CreateExpenditureCategoryRequest createExpenditureCategoryRequest, int userId);
 
-        Task Update(UpdateExpenditureCategoryRequest updateExpenditureCategoryRequest);
+        Task Update(UpdateExpenditureCategoryRequest updateExpenditureCategoryRequest, int id,int userId);
 
-        Task Delete(int id);
+        Task Delete(int id, int userId);
     }
 }
