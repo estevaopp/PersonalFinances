@@ -14,10 +14,10 @@ namespace PersonalFinances.Application.Services
 {
     public class ExpenditureCategoryService : IExpenditureCategoryService
     {
-        private IAsyncRepository<ExpenditureCategory> _expenditureCategoryRepository;
+        private IExpenditureCategoryRepository _expenditureCategoryRepository;
         private IMapper _mapper;
 
-        public ExpenditureCategoryService(IMapper mapper, IAsyncRepository<ExpenditureCategory> expenditureCategoryRepository)
+        public ExpenditureCategoryService(IMapper mapper, IExpenditureCategoryRepository expenditureCategoryRepository)
         {
             _mapper = mapper;
             _expenditureCategoryRepository = expenditureCategoryRepository;
@@ -32,7 +32,7 @@ namespace PersonalFinances.Application.Services
 
         public async Task Delete(int id, int userId)
         {
-            ExpenditureCategory expenditureCategory = (await _expenditureCategoryRepository.FindByAsync(x => x.UserId == userId && x.Id == id)).FirstOrDefault();
+            ExpenditureCategory expenditureCategory = await _expenditureCategoryRepository.GetByIdAsync(id, userId);
 
             if (expenditureCategory == null)
                 throw new BusinessException("Invalid Id");
@@ -42,7 +42,7 @@ namespace PersonalFinances.Application.Services
 
         public async Task<List<ExpenditureCategoryResponse>> GetAllExpenditureCategories(int userId)
         {
-            List<ExpenditureCategory> expenditureCategories = (List<ExpenditureCategory>) await _expenditureCategoryRepository.FindByAsNoTrackingAsync(x => x.UserId == userId);
+            List<ExpenditureCategory> expenditureCategories = (List<ExpenditureCategory>) await _expenditureCategoryRepository.GetAllAsNoTrackingAsync(userId);
             List<ExpenditureCategoryResponse> expenditureCategoryResponses = _mapper.Map<List<ExpenditureCategoryResponse>>(expenditureCategories); 
 
             return expenditureCategoryResponses;
@@ -50,7 +50,7 @@ namespace PersonalFinances.Application.Services
 
         public async Task<ExpenditureCategoryResponse> GetExpenditureCategoryById(int id, int userId)
         {
-            ExpenditureCategory expenditureCategory = (ExpenditureCategory) (await _expenditureCategoryRepository.FindByAsNoTrackingAsync(x => x.UserId == userId && x.Id == id)).FirstOrDefault();
+            ExpenditureCategory expenditureCategory = (ExpenditureCategory) await _expenditureCategoryRepository.GetByIdAsNoTrackingAsync(id, userId);
             ExpenditureCategoryResponse expenditureCategoryResponse = _mapper.Map<ExpenditureCategoryResponse>(expenditureCategory); 
 
             return expenditureCategoryResponse;
@@ -58,7 +58,7 @@ namespace PersonalFinances.Application.Services
 
         public async Task Update(UpdateExpenditureCategoryRequest updateExpenditureCategoryRequest, int id, int userId)
         {
-            ExpenditureCategory expenditureCategory = (await _expenditureCategoryRepository.FindByAsync(x => x.UserId == userId && x.Id == id)).FirstOrDefault();
+            ExpenditureCategory expenditureCategory = await _expenditureCategoryRepository.GetByIdAsync(id, userId);
 
             if (expenditureCategory == null)
                 throw new BusinessException("Invalid Id");
