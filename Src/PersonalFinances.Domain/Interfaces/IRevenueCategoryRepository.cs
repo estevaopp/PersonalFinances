@@ -8,9 +8,9 @@ namespace PersonalFinances.Domain.Interfaces
 {
     public interface IRevenueCategoryRepository
     {
-        Task<RevenueCategory> GetByIdAsync(int id, int userId);
-        Task<RevenueCategory> GetByIdAsNoTrackingAsync(int id, int userId);
-        Task<IEnumerable<RevenueCategory>> GetAllAsNoTrackingAsync(int userId);
+        Task<RevenueCategory> GetByIdAndUserIdAsync(int id, int userId);
+        Task<RevenueCategory> GetByIdAndUserIdAsNoTrackingAsync(int id, int userId);
+        Task<IEnumerable<RevenueCategory>> GetByUserIdAsNoTrackingAsync(int userId);
         Task AddAsync(RevenueCategory revenueCategory);
         Task UpdateAsync(RevenueCategory revenueCategory);
         Task DeleteAsync(RevenueCategory revenueCategory);

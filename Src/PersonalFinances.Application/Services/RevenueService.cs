@@ -34,7 +34,7 @@ namespace PersonalFinances.Application.Services
 
         public async Task Delete(int id, int userId)
         {
-            Revenue revenue = (Revenue) await _revenueRepository.GetByIdAsync(id, userId);
+            Revenue revenue = (Revenue) await _revenueRepository.GetByIdAndUserIdAsync(id, userId);
 
             if (revenue == null)
                 throw new BusinessException("Invalid Id");
@@ -44,7 +44,7 @@ namespace PersonalFinances.Application.Services
 
         public async Task<List<RevenueResponse>> GetAllRevenues(int userId)
         {
-            List<Revenue> revenues = (List<Revenue>) await _revenueRepository.GetAllAsync(userId);
+            List<Revenue> revenues = (List<Revenue>) await _revenueRepository.GetByUserIdAsync(userId);
             List<RevenueResponse> revenueResponses = _mapper.Map<List<RevenueResponse>>(revenues); 
 
             return revenueResponses;
@@ -52,7 +52,7 @@ namespace PersonalFinances.Application.Services
 
         public async Task<RevenueResponse> GetRevenueById(int id, int userId)
         {
-            Revenue revenue = (Revenue) await _revenueRepository.GetByIdAsync(id, userId);
+            Revenue revenue = (Revenue) await _revenueRepository.GetByIdAndUserIdAsync(id, userId);
             RevenueResponse revenueResponse = _mapper.Map<RevenueResponse>(revenue); 
 
             return revenueResponse;
@@ -60,7 +60,7 @@ namespace PersonalFinances.Application.Services
 
         public async Task Update(UpdateRevenueRequest updateRevenueRequest, int id, int userId)
         {
-            Revenue revenue = (Revenue) await _revenueRepository.GetByIdAsync(id, userId);
+            Revenue revenue = (Revenue) await _revenueRepository.GetByIdAndUserIdAsync(id, userId);
 
             if (revenue == null)
                 throw new BusinessException("Invalid Id");

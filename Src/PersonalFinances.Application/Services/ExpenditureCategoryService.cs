@@ -32,7 +32,7 @@ namespace PersonalFinances.Application.Services
 
         public async Task Delete(int id, int userId)
         {
-            ExpenditureCategory expenditureCategory = await _expenditureCategoryRepository.GetByIdAsync(id, userId);
+            ExpenditureCategory expenditureCategory = await _expenditureCategoryRepository.GetByIdAndUserIdAsync(id, userId);
 
             if (expenditureCategory == null)
                 throw new BusinessException("Invalid Id");
@@ -42,7 +42,7 @@ namespace PersonalFinances.Application.Services
 
         public async Task<List<ExpenditureCategoryResponse>> GetAllExpenditureCategories(int userId)
         {
-            List<ExpenditureCategory> expenditureCategories = (List<ExpenditureCategory>) await _expenditureCategoryRepository.GetAllAsNoTrackingAsync(userId);
+            List<ExpenditureCategory> expenditureCategories = (List<ExpenditureCategory>) await _expenditureCategoryRepository.GetByUserIdAsNoTrackingAsync(userId);
             List<ExpenditureCategoryResponse> expenditureCategoryResponses = _mapper.Map<List<ExpenditureCategoryResponse>>(expenditureCategories); 
 
             return expenditureCategoryResponses;
@@ -50,7 +50,7 @@ namespace PersonalFinances.Application.Services
 
         public async Task<ExpenditureCategoryResponse> GetExpenditureCategoryById(int id, int userId)
         {
-            ExpenditureCategory expenditureCategory = (ExpenditureCategory) await _expenditureCategoryRepository.GetByIdAsNoTrackingAsync(id, userId);
+            ExpenditureCategory expenditureCategory = (ExpenditureCategory) await _expenditureCategoryRepository.GetByIdAndUserIdAsNoTrackingAsync(id, userId);
             ExpenditureCategoryResponse expenditureCategoryResponse = _mapper.Map<ExpenditureCategoryResponse>(expenditureCategory); 
 
             return expenditureCategoryResponse;
@@ -58,7 +58,7 @@ namespace PersonalFinances.Application.Services
 
         public async Task Update(UpdateExpenditureCategoryRequest updateExpenditureCategoryRequest, int id, int userId)
         {
-            ExpenditureCategory expenditureCategory = await _expenditureCategoryRepository.GetByIdAsync(id, userId);
+            ExpenditureCategory expenditureCategory = await _expenditureCategoryRepository.GetByIdAndUserIdAsync(id, userId);
 
             if (expenditureCategory == null)
                 throw new BusinessException("Invalid Id");

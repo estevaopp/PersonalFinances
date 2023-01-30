@@ -31,7 +31,7 @@ namespace PersonalFinances.Application.Services
 
         public async Task Delete(int id, int userId)
         {
-            RevenueCategory revenueCategory = await _revenueCategoryRepository.GetByIdAsync(id, userId);
+            RevenueCategory revenueCategory = await _revenueCategoryRepository.GetByIdAndUserIdAsync(id, userId);
 
             if (revenueCategory == null)
                 throw new BusinessException("Invalid Id");
@@ -41,7 +41,7 @@ namespace PersonalFinances.Application.Services
 
         public async Task<List<RevenueCategoryResponse>> GetAllRevenueCategories(int userId)
         {
-            List<RevenueCategory> revenueCategories = (List<RevenueCategory>) await _revenueCategoryRepository.GetAllAsNoTrackingAsync(userId);
+            List<RevenueCategory> revenueCategories = (List<RevenueCategory>) await _revenueCategoryRepository.GetByUserIdAsNoTrackingAsync(userId);
             List<RevenueCategoryResponse> revenueCategoryResponses = _mapper.Map<List<RevenueCategoryResponse>>(revenueCategories); 
 
             return revenueCategoryResponses;
@@ -49,7 +49,7 @@ namespace PersonalFinances.Application.Services
 
         public async Task<RevenueCategoryResponse> GetRevenueCategoryById(int id, int userId)
         {
-            RevenueCategory revenueCategory = (RevenueCategory) await _revenueCategoryRepository.GetByIdAsNoTrackingAsync(id, userId);
+            RevenueCategory revenueCategory = (RevenueCategory) await _revenueCategoryRepository.GetByIdAndUserIdAsNoTrackingAsync(id, userId);
             RevenueCategoryResponse revenueCategoryResponse = _mapper.Map<RevenueCategoryResponse>(revenueCategory); 
 
             return revenueCategoryResponse;
@@ -57,7 +57,7 @@ namespace PersonalFinances.Application.Services
 
         public async Task Update(UpdateRevenueCategoryRequest updateRevenueCategoryRequest, int id, int userId)
         {
-            RevenueCategory revenueCategory = await _revenueCategoryRepository.GetByIdAsync(id, userId);
+            RevenueCategory revenueCategory = await _revenueCategoryRepository.GetByIdAndUserIdAsync(id, userId);
 
             if (revenueCategory == null)
                 throw new BusinessException("Invalid Id");
