@@ -14,10 +14,10 @@ namespace PersonalFinances.Application.Services
 {
     public class ExpenditureService : IExpenditureService
     {
-        private IAsyncRepository<Expenditure> _expenditureRepository;
+        private IExpenditureRepository _expenditureRepository;
         private IMapper _mapper;
 
-        public ExpenditureService(IMapper mapper, IAsyncRepository<Expenditure> expenditureRepository)
+        public ExpenditureService(IMapper mapper, IExpenditureRepository expenditureRepository)
         {
             _mapper = mapper;
             _expenditureRepository = expenditureRepository;
@@ -33,7 +33,7 @@ namespace PersonalFinances.Application.Services
 
         public async Task Delete(int id, int userId)
         {
-            Expenditure expenditure = (await _expenditureRepository.FindByAsync(x => x.UserId == userId && x.Id == id)).FirstOrDefault();
+            Expenditure expenditure = await _expenditureRepository.GetByIdAsync(id, userId);
 
             if (expenditure == null)
                 throw new BusinessException("Invalid Id");
@@ -43,7 +43,7 @@ namespace PersonalFinances.Application.Services
 
         public async Task<List<ExpenditureResponse>> GetAllExpenditures(int userId)
         {
-            List<Expenditure> expenditures = (List<Expenditure>) await _expenditureRepository.FindByAsync(x => x.UserId == userId);
+            List<Expenditure> expenditures = (List<Expenditure>) await _expenditureRepository.GetAllAsync(userId);
             List<ExpenditureResponse> expenditureResponses = _mapper.Map<List<ExpenditureResponse>>(expenditures); 
 
             return expenditureResponses;
@@ -51,7 +51,7 @@ namespace PersonalFinances.Application.Services
 
         public async Task<ExpenditureResponse> GetExpenditureById(int id, int userId)
         {
-            Expenditure expenditure = (Expenditure) (await _expenditureRepository.FindByAsync(x => x.UserId == userId && x.Id == id)).FirstOrDefault();
+            Expenditure expenditure = (Expenditure) await _expenditureRepository.GetByIdAsync(id, userId);
             ExpenditureResponse expenditureResponse = _mapper.Map<ExpenditureResponse>(expenditure); 
 
             return expenditureResponse;
@@ -59,7 +59,7 @@ namespace PersonalFinances.Application.Services
 
         public async Task Update(UpdateExpenditureRequest updateExpenditureRequest, int id, int userId)
         {
-            Expenditure expenditure = (await _expenditureRepository.FindByAsync(x => x.UserId == userId && x.Id == id)).FirstOrDefault();
+            Expenditure expenditure = await _expenditureRepository.GetByIdAsync(id, userId);
 
             if (expenditure == null)
                 throw new BusinessException("Invalid Id");
