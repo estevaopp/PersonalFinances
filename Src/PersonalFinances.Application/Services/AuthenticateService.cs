@@ -10,13 +10,11 @@ namespace PersonalFinances.Application.Services
     public class AuthenticateService : IAuthenticateService
     {
         private IAsyncRepository<User> _userRepository;
-        private IAsyncRepository<UserRole> _userRoleRepository;
         private ITokenService _tokenService;
 
         public AuthenticateService(IAsyncRepository<User> userRepository, IAsyncRepository<UserRole> userRoleRepository ,ITokenService tokenService, IConfiguration configuration)
         {
             _userRepository = userRepository;
-            _userRoleRepository = userRoleRepository;
             _tokenService = tokenService;
         }
 
@@ -29,13 +27,8 @@ namespace PersonalFinances.Application.Services
             
             if(!user.IsValidLoginPassword(login.Password))
                 throw new BusinessException("Senha inválida");
-            
-            string role = (await _userRoleRepository.GetByIdAsNoTrackingAsync(user.UserRoleId)).Name;
 
-            if(string.IsNullOrWhiteSpace(role))
-                throw new BusinessException("Usuario com role invalida, contate o administrador");
-
-            Token token = _tokenService.GenerateToken(user, role);
+            Token token = _tokenService.GenerateToken(user);
 
             if(token == null)
                 throw new BusinessException("Não foi possivel gerar o token");
