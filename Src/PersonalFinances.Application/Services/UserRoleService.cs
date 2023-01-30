@@ -14,10 +14,10 @@ namespace PersonalFinances.Application.Services
 {
     public class UserRoleService : IUserRoleService
     {
-        private IAsyncRepository<UserRole> _userRoleRepository;
+        private IUserRoleRepository _userRoleRepository;
         private IMapper _mapper;
 
-        public UserRoleService(IMapper mapper, IAsyncRepository<UserRole> userRoleRepository)
+        public UserRoleService(IMapper mapper, IUserRoleRepository userRoleRepository)
         {
             _mapper = mapper;
             _userRoleRepository = userRoleRepository;
