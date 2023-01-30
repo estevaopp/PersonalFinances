@@ -31,7 +31,7 @@ namespace PersonalFinances.Api.Controllers
         {
             int userId = int.Parse(User.Claims.FirstOrDefault(x => x.Type == "UserId").Value);
 
-            var revenueResponse = await _revenueService.GetRevenueById(id, userId);
+            var revenueResponse = await _revenueService.GetByIdAndUserId(id, userId);
 
             if(revenueResponse == null)
                 return NotFound();
@@ -45,7 +45,7 @@ namespace PersonalFinances.Api.Controllers
         {
             int userId = int.Parse(User.Claims.FirstOrDefault(x => x.Type == "UserId").Value);
 
-            var revenueResponses = await _revenueService.GetAllRevenues(userId);
+            var revenueResponses = await _revenueService.GetByUserId(userId);
 
             if(revenueResponses == null)
                 return NotFound();

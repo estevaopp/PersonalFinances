@@ -30,7 +30,7 @@ namespace PersonalFinances.Api.Controllers
         [Route("{id:int}")]
         public async Task<ActionResult<UserRoleResponse>> GetById(int id)
         {
-            var userRoleResponse = await _userRoleService.GetUserRoleById(id);
+            var userRoleResponse = await _userRoleService.GetById(id);
 
             if(userRoleResponse == null)
                 return NotFound();
@@ -42,7 +42,7 @@ namespace PersonalFinances.Api.Controllers
         [Route("")]
         public async Task<ActionResult<UserRoleResponse>> Get()
         {
-            var userRoleResponse = await _userRoleService.GetAllUserRoles();
+            var userRoleResponse = await _userRoleService.GetAll();
 
             return Ok(userRoleResponse);
         }

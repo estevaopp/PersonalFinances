@@ -31,7 +31,7 @@ namespace PersonalFinances.Api.Controllers
         {
             int userId = int.Parse(User.Claims.FirstOrDefault(x => x.Type == "UserId").Value);
 
-            var expenditureResponse = await _expenditureService.GetExpenditureById(id, userId);
+            var expenditureResponse = await _expenditureService.GetByIdAndUserId(id, userId);
 
             if(expenditureResponse == null)
                 return NotFound();
@@ -45,7 +45,7 @@ namespace PersonalFinances.Api.Controllers
         {
             int userId = int.Parse(User.Claims.FirstOrDefault(x => x.Type == "UserId").Value);
 
-            var expenditureResponses = await _expenditureService.GetAllExpenditures(userId);
+            var expenditureResponses = await _expenditureService.GetByUserId(userId);
 
             if(expenditureResponses == null)
                 return NotFound();

@@ -28,7 +28,7 @@ namespace PersonalFinances.Api.Controllers
         [Authorize(Roles = "Admin")]
         public async Task<ActionResult<UserResponse>> GetById(int id)
         {
-            var userResponse = await _userService.GetUserById(id);
+            var userResponse = await _userService.GetById(id);
 
             if(userResponse == null)
                 return NotFound();
@@ -41,18 +41,18 @@ namespace PersonalFinances.Api.Controllers
         [Authorize(Roles = "Admin")]
         public async Task<ActionResult<UserResponse>> Get()
         {
-            var userResponse = await _userService.GetAllUsers();
+            var userResponse = await _userService.GetAll();
 
             return Ok(userResponse);
         }
 
         [HttpGet]
         [Route("me")]
-        public async Task<ActionResult<UserResponse>> GetById()
+        public async Task<ActionResult<UserResponse>> GetMyUser()
         {
             int userId = int.Parse(User.Claims.FirstOrDefault(x => x.Type == "UserId").Value);
 
-            var userResponse = await _userService.GetUserById(userId);
+            var userResponse = await _userService.GetById(userId);
 
             if(userResponse == null)
                 return NotFound();

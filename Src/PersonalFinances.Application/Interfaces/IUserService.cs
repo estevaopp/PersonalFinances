@@ -9,10 +9,8 @@ namespace PersonalFinances.Application.Interfaces
 {
     public interface IUserService
     {
-        Task<UserResponse> GetUserById(int id);
+        Task<UserResponse> GetById(int id);
 
-        Task<UserResponse> GetMyUser(int id);
-
-        Task<List<UserResponse>> GetAllUsers();
+        Task<List<UserResponse>> GetAll();
     }
 }

@@ -23,7 +23,7 @@ namespace PersonalFinances.Application.Services
             _userRoleRepository = userRoleRepository;
         }
 
-        public async Task<List<UserRoleResponse>> GetAllUserRoles()
+        public async Task<List<UserRoleResponse>> GetAll()
         {
             List<UserRole> userRoles = (List<UserRole>) await _userRoleRepository.GetAllAsNoTrackingAsync();
             List<UserRoleResponse> userRoleResponses = _mapper.Map<List<UserRoleResponse>>(userRoles); 
@@ -31,7 +31,7 @@ namespace PersonalFinances.Application.Services
             return userRoleResponses;
         }
 
-        public async Task<UserRoleResponse> GetUserRoleById(int id)
+        public async Task<UserRoleResponse> GetById(int id)
         {
             UserRole userRole = (UserRole) await _userRoleRepository.GetByIdAsNoTrackingAsync(id);
             UserRoleResponse userRoleResponse = _mapper.Map<UserRoleResponse>(userRole); 

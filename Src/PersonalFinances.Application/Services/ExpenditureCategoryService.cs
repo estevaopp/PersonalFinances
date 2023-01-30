@@ -40,7 +40,7 @@ namespace PersonalFinances.Application.Services
             await _expenditureCategoryRepository.DeleteAsync(expenditureCategory);
         }
 
-        public async Task<List<ExpenditureCategoryResponse>> GetAllExpenditureCategories(int userId)
+        public async Task<List<ExpenditureCategoryResponse>> GetByUserId(int userId)
         {
             List<ExpenditureCategory> expenditureCategories = (List<ExpenditureCategory>) await _expenditureCategoryRepository.GetByUserIdAsNoTrackingAsync(userId);
             List<ExpenditureCategoryResponse> expenditureCategoryResponses = _mapper.Map<List<ExpenditureCategoryResponse>>(expenditureCategories); 
@@ -48,7 +48,7 @@ namespace PersonalFinances.Application.Services
             return expenditureCategoryResponses;
         }
 
-        public async Task<ExpenditureCategoryResponse> GetExpenditureCategoryById(int id, int userId)
+        public async Task<ExpenditureCategoryResponse> GetByIdAndUserId(int id, int userId)
         {
             ExpenditureCategory expenditureCategory = (ExpenditureCategory) await _expenditureCategoryRepository.GetByIdAndUserIdAsNoTrackingAsync(id, userId);
             ExpenditureCategoryResponse expenditureCategoryResponse = _mapper.Map<ExpenditureCategoryResponse>(expenditureCategory); 

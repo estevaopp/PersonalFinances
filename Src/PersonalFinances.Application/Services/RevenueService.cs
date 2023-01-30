@@ -42,7 +42,7 @@ namespace PersonalFinances.Application.Services
             await _revenueRepository.DeleteAsync(revenue);
         }
 
-        public async Task<List<RevenueResponse>> GetAllRevenues(int userId)
+        public async Task<List<RevenueResponse>> GetByUserId(int userId)
         {
             List<Revenue> revenues = (List<Revenue>) await _revenueRepository.GetByUserIdAsync(userId);
             List<RevenueResponse> revenueResponses = _mapper.Map<List<RevenueResponse>>(revenues); 
@@ -50,7 +50,7 @@ namespace PersonalFinances.Application.Services
             return revenueResponses;
         }
 
-        public async Task<RevenueResponse> GetRevenueById(int id, int userId)
+        public async Task<RevenueResponse> GetByIdAndUserId(int id, int userId)
         {
             Revenue revenue = (Revenue) await _revenueRepository.GetByIdAndUserIdAsync(id, userId);
             RevenueResponse revenueResponse = _mapper.Map<RevenueResponse>(revenue); 

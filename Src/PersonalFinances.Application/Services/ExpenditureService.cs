@@ -41,7 +41,7 @@ namespace PersonalFinances.Application.Services
             await _expenditureRepository.DeleteAsync(expenditure);
         }
 
-        public async Task<List<ExpenditureResponse>> GetAllExpenditures(int userId)
+        public async Task<List<ExpenditureResponse>> GetByUserId(int userId)
         {
             List<Expenditure> expenditures = (List<Expenditure>) await _expenditureRepository.GetByUserIdAsync(userId);
             List<ExpenditureResponse> expenditureResponses = _mapper.Map<List<ExpenditureResponse>>(expenditures); 
@@ -49,7 +49,7 @@ namespace PersonalFinances.Application.Services
             return expenditureResponses;
         }
 
-        public async Task<ExpenditureResponse> GetExpenditureById(int id, int userId)
+        public async Task<ExpenditureResponse> GetByIdAndUserId(int id, int userId)
         {
             Expenditure expenditure = (Expenditure) await _expenditureRepository.GetByIdAndUserIdAsync(id, userId);
             ExpenditureResponse expenditureResponse = _mapper.Map<ExpenditureResponse>(expenditure); 

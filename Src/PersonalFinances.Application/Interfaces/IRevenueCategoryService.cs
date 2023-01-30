@@ -9,9 +9,9 @@ namespace PersonalFinances.Application.Interfaces
 {
     public interface IRevenueCategoryService
     {
-        Task<RevenueCategoryResponse> GetRevenueCategoryById(int id, int userId);
+        Task<RevenueCategoryResponse> GetByIdAndUserId(int id, int userId);
 
-        Task<List<RevenueCategoryResponse>> GetAllRevenueCategories(int userId);
+        Task<List<RevenueCategoryResponse>> GetByUserId(int userId);
 
         Task Create(CreateRevenueCategoryRequest createRevenueCategoryRequest, int userId);
 

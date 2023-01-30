@@ -39,7 +39,7 @@ namespace PersonalFinances.Application.Services
             await _revenueCategoryRepository.DeleteAsync(revenueCategory);
         }
 
-        public async Task<List<RevenueCategoryResponse>> GetAllRevenueCategories(int userId)
+        public async Task<List<RevenueCategoryResponse>> GetByUserId(int userId)
         {
             List<RevenueCategory> revenueCategories = (List<RevenueCategory>) await _revenueCategoryRepository.GetByUserIdAsNoTrackingAsync(userId);
             List<RevenueCategoryResponse> revenueCategoryResponses = _mapper.Map<List<RevenueCategoryResponse>>(revenueCategories); 
@@ -47,7 +47,7 @@ namespace PersonalFinances.Application.Services
             return revenueCategoryResponses;
         }
 
-        public async Task<RevenueCategoryResponse> GetRevenueCategoryById(int id, int userId)
+        public async Task<RevenueCategoryResponse> GetByIdAndUserId(int id, int userId)
         {
             RevenueCategory revenueCategory = (RevenueCategory) await _revenueCategoryRepository.GetByIdAndUserIdAsNoTrackingAsync(id, userId);
             RevenueCategoryResponse revenueCategoryResponse = _mapper.Map<RevenueCategoryResponse>(revenueCategory); 

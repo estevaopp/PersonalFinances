@@ -9,9 +9,9 @@ namespace PersonalFinances.Application.Interfaces
 {
     public interface IExpenditureCategoryService
     {
-        Task<ExpenditureCategoryResponse> GetExpenditureCategoryById(int id, int userId);
+        Task<ExpenditureCategoryResponse> GetByIdAndUserId(int id, int userId);
 
-        Task<List<ExpenditureCategoryResponse>> GetAllExpenditureCategories(int userId);
+        Task<List<ExpenditureCategoryResponse>> GetByUserId(int userId);
 
         Task Create(CreateExpenditureCategoryRequest createExpenditureCategoryRequest, int userId);
 
