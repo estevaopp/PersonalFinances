@@ -9,10 +9,10 @@ namespace PersonalFinances.Application.Services
 {
     public class AuthenticateService : IAuthenticateService
     {
-        private IAsyncRepository<User> _userRepository;
+        private IUserRepository _userRepository;
         private ITokenService _tokenService;
 
-        public AuthenticateService(IAsyncRepository<User> userRepository, IAsyncRepository<UserRole> userRoleRepository ,ITokenService tokenService, IConfiguration configuration)
+        public AuthenticateService(IUserRepository userRepository, ITokenService tokenService)
         {
             _userRepository = userRepository;
             _tokenService = tokenService;
@@ -20,7 +20,7 @@ namespace PersonalFinances.Application.Services
 
         public async Task<Token> Login(LoginRequest login)
         {
-            User user = (await _userRepository.FindByAsync(x => x.Email == login.Email)).FirstOrDefault();
+            User user = await _userRepository.GetByEmailAsync(login.Email);
 
             if(user == null)
                 throw new BusinessException("Email inválido");
