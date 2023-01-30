@@ -11,8 +11,8 @@ namespace PersonalFinances.Domain.Interfaces
         Task<RevenueCategory> GetByIdAsync(int id, int userId);
         Task<RevenueCategory> GetByIdAsNoTrackingAsync(int id, int userId);
         Task<IEnumerable<RevenueCategory>> GetAllAsNoTrackingAsync(int userId);
-        Task AddAsync(RevenueCategory revenueCategory, int userId);
-        Task UpdateAsync(RevenueCategory revenueCategory, int userId);
-        Task DeleteAsync(RevenueCategory revenueCategory, int userId);
+        Task AddAsync(RevenueCategory revenueCategory);
+        Task UpdateAsync(RevenueCategory revenueCategory);
+        Task DeleteAsync(RevenueCategory revenueCategory);
     }
 }

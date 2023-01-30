@@ -5,10 +5,10 @@ namespace PersonalFinances.Domain.Interfaces
 {
     public interface IExpenditureRepository
     {
-        Task<Expenditure> GetByIdAsync(int id, int userId);
-        Task<IEnumerable<Expenditure>> GetAllAsync(int userId);
-        Task AddAsync(Expenditure expenditure, int userId);
-        Task UpdateAsync(Expenditure expenditure, int userId);
-        Task DeleteAsync(Expenditure expenditure, int userId);
+        Task<Expenditure> GetByIdAsync(int id, int UserId);
+        Task<IEnumerable<Expenditure>> GetAllAsync(int UserId);
+        Task AddAsync(Expenditure expenditure);
+        Task UpdateAsync(Expenditure expenditure);
+        Task DeleteAsync(Expenditure expenditure);
     }
 }

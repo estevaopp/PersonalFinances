@@ -11,8 +11,8 @@ namespace PersonalFinances.Domain.Interfaces
         Task<ExpenditureCategory> GetByIdAsync(int id, int userId);
         Task<ExpenditureCategory> GetByIdAsNoTrackingAsync(int id, int userId);
         Task<IEnumerable<ExpenditureCategory>> GetAllAsNoTrackingAsync(int userId);
-        Task AddAsync(ExpenditureCategory expenditureCategory, int userId);
-        Task UpdateAsync(ExpenditureCategory expenditureCategory, int userId);
-        Task DeleteAsync(ExpenditureCategory expenditureCategory, int userId);
+        Task AddAsync(ExpenditureCategory expenditureCategory);
+        Task UpdateAsync(ExpenditureCategory expenditureCategory);
+        Task DeleteAsync(ExpenditureCategory expenditureCategory);
     }
 }

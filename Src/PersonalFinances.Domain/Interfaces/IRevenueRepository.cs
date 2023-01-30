@@ -7,8 +7,8 @@ namespace PersonalFinances.Domain.Interfaces
     {
         Task<Revenue> GetByIdAsync(int id, int userId);
         Task<IEnumerable<Revenue>> GetAllAsync(int userId);
-        Task AddAsync(Revenue revenue, int userId);
-        Task UpdateAsync(Revenue revenue, int userId);
-        Task DeleteAsync(Revenue revenue, int userId);
+        Task AddAsync(Revenue revenue);
+        Task UpdateAsync(Revenue revenue);
+        Task DeleteAsync(Revenue revenue);
     }
 }
