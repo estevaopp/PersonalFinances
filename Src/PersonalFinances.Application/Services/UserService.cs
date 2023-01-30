@@ -8,10 +8,10 @@ namespace PersonalFinances.Application.Services
 {
     public class UserService : IUserService
     {
-        private IAsyncRepository<User> _userRepository;
+        private IUserRepository _userRepository;
         private IMapper _mapper;
 
-        public UserService(IMapper mapper, IAsyncRepository<User> userRepository)
+        public UserService(IMapper mapper, IUserRepository userRepository)
         {
             _mapper = mapper;
             _userRepository = userRepository;
@@ -19,7 +19,7 @@ namespace PersonalFinances.Application.Services
 
         public async Task<List<UserResponse>> GetAllUsers()
         {
-            List<User> users = (List<User>) await _userRepository.FindByAsync(include: x => x.UserRole);
+            List<User> users = (List<User>) await _userRepository.GetAllAsync();
 
             List<UserResponse> userResponses = _mapper.Map<List<UserResponse>>(users);
 
