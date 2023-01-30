@@ -30,12 +30,12 @@ namespace PersonalFinances.Infra.Data.Repository
             await _context.SaveChangesAsync();
         }
 
-        public async Task<IEnumerable<Expenditure>> GetAllAsync(int userId)
+        public async Task<IEnumerable<Expenditure>> GetByUserIdAsync(int userId)
         {
             return await _context.Expenditures.Where(x => x.UserId == userId).ToListAsync();
         }
 
-        public async Task<Expenditure> GetByIdAsync(int id, int userId)
+        public async Task<Expenditure> GetByIdAndUserIdAsync(int id, int userId)
         {
             return await _context.Expenditures.FirstOrDefaultAsync(x => x.UserId == userId && x.Id == id);
         }

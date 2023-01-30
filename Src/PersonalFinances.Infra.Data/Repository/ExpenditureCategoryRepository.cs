@@ -28,17 +28,17 @@ namespace PersonalFinances.Infra.Data.Repository
             await _context.SaveChangesAsync();
         }
 
-        public async Task<IEnumerable<ExpenditureCategory>> GetAllAsNoTrackingAsync(int userId)
+        public async Task<IEnumerable<ExpenditureCategory>> GetByUserIdAsNoTrackingAsync(int userId)
         {
             return await _context.ExpenditureCategories.AsNoTracking().Where(x => x.UserId == userId).ToListAsync();
         }
 
-        public async Task<ExpenditureCategory> GetByIdAsNoTrackingAsync(int id, int userId)
+        public async Task<ExpenditureCategory> GetByIdAndUserIdAsNoTrackingAsync(int id, int userId)
         {
             return await _context.ExpenditureCategories.AsNoTracking().FirstOrDefaultAsync(x => x.UserId == userId && x.Id == id);
         }
 
-        public async Task<ExpenditureCategory> GetByIdAsync(int id, int userId)
+        public async Task<ExpenditureCategory> GetByIdAndUserIdAsync(int id, int userId)
         {
             return await _context.ExpenditureCategories.FirstOrDefaultAsync(x => x.UserId == userId && x.Id == id);
         }
