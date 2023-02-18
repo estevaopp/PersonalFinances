@@ -1,6 +1,8 @@
+using AutoMapper;
 using Microsoft.Extensions.Configuration;
 using PersonalFinances.Application.Interfaces;
 using PersonalFinances.Application.ViewModel.Request.User;
+using PersonalFinances.Application.ViewModel.Response;
 using PersonalFinances.Domain.Entities;
 using PersonalFinances.Domain.Exceptions;
 using PersonalFinances.Domain.Interfaces;
@@ -11,11 +13,13 @@ namespace PersonalFinances.Application.Services
     {
         private IUserRepository _userRepository;
         private ITokenService _tokenService;
+        private IMapper _mapper;
 
-        public AuthenticateService(IUserRepository userRepository, ITokenService tokenService)
+        public AuthenticateService(IUserRepository userRepository, ITokenService tokenService, IMapper mapper)
         {
             _userRepository = userRepository;
             _tokenService = tokenService;
+            _mapper = mapper;
         }
 
         public async Task<Token> Login(LoginRequest login)
@@ -36,12 +40,16 @@ namespace PersonalFinances.Application.Services
             return token;
         }
 
-        public async Task Register(CreateUserRequest createUserRequest)
+        public async Task<UserResponse> Register(CreateUserRequest createUserRequest)
         {
             int REGULAR_ROLE_ID = 1;
 
             User user = new User(createUserRequest.Username, createUserRequest.Email, createUserRequest.Password, REGULAR_ROLE_ID);
             await _userRepository.AddAsync(user);
+            
+            UserResponse userResponse = _mapper.Map<UserResponse>(user);
+
+            return userResponse;
         }
     }
 }

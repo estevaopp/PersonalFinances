@@ -1,4 +1,5 @@
 using PersonalFinances.Application.ViewModel.Request.User;
+using PersonalFinances.Application.ViewModel.Response;
 using PersonalFinances.Domain.Entities;
 
 namespace PersonalFinances.Application.Interfaces
@@ -7,6 +8,6 @@ namespace PersonalFinances.Application.Interfaces
     {
         Task<Token> Login(LoginRequest login);
 
-        Task Register(CreateUserRequest createUserRequest);
+        Task<UserResponse> Register(CreateUserRequest createUserRequest);
     }
 }

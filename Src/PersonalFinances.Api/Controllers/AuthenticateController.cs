@@ -9,6 +9,8 @@ using PersonalFinances.Application.ViewModel.Request.User;
 using PersonalFinances.Domain.Entities;
 using PersonalFinances.Domain.Exceptions;
 using PersonalFinances.Domain.Enums;
+using PersonalFinances.Application.ViewModel.Response.CommandResponse;
+using PersonalFinances.Application.ViewModel.Response;
 
 namespace PersonalFinances.Api.Controllers
 {
@@ -35,7 +37,14 @@ namespace PersonalFinances.Api.Controllers
 
             var token = await _authenticateService.Login(login);
 
-            return Ok(token);
+            return Ok
+            (
+                new Response
+                {
+                    Success = true,
+                    Data = token
+                }
+            );
         }
 
         [HttpPost]
@@ -48,9 +57,16 @@ namespace PersonalFinances.Api.Controllers
             if (!ModelState.IsValid)
                 return BadRequest(new BusinessException("Invalid Request", nameof(CreateUserRequest), ErroEnum.ResourceBadRequest));
 
-            await _authenticateService.Register(createUser);
+            UserResponse user = await _authenticateService.Register(createUser);
 
-            return Ok();
+            return Ok
+            (
+                new Response
+                {
+                    Success = true,
+                    Data = user
+                }
+            );
         }
     }
 }
