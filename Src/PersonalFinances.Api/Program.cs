@@ -2,12 +2,29 @@ using System.Text;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using PersonalFinances.Api.Middlewares;
 using PersonalFinances.Infra.IoC.DependencyInjection;
+using Microsoft.Extensions.Logging;
+using Serilog;
+using Serilog.Events;
+using Serilog.Formatting.Compact;
+
+Log.Logger = new LoggerConfiguration()
+    .MinimumLevel.Information()
+    .MinimumLevel.Override("Microsoft", LogEventLevel.Warning)
+    .Enrich.WithThreadId()
+    .Enrich.WithProcessId()
+    .Enrich.WithEnvironmentName()
+    .Enrich.WithMachineName()
+    .WriteTo.Console(new CompactJsonFormatter())
+    .WriteTo.File(new CompactJsonFormatter(), "Logs/PersonalFinances-Api.json", rollingInterval: RollingInterval.Day)
+    .CreateLogger();
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
+builder.Host.UseSerilog();
 builder.Services.AddCors();
 builder.Services.AddControllers();
 
@@ -71,6 +88,10 @@ builder.Services.AddAutoMappers();
 builder.Services.AddServices();
 
 var app = builder.Build();
+
+
+
+app.UseMiddleware<ExceptionMiddleware>();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

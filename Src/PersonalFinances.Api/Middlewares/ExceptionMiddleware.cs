@@ -12,7 +12,7 @@ namespace PersonalFinances.Api.Middlewares
         private readonly RequestDelegate _next;
         private readonly ILogger _logger;
 
-        public ExceptionMiddleware(RequestDelegate next, ILogger logger)
+        public ExceptionMiddleware(RequestDelegate next, ILogger<ExceptionMiddleware> logger)
         {
             _next = next;
             _logger = logger;
@@ -26,7 +26,7 @@ namespace PersonalFinances.Api.Middlewares
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, ex.ToString());
+                _logger.LogError(ex, ex.Message);
                 await HandleExceptionAsync(httpContext, ex);
             }
         }
@@ -44,7 +44,7 @@ namespace PersonalFinances.Api.Middlewares
             return httpContext.Response.WriteAsync(JsonConvert.SerializeObject(new
             {
                 success = false,
-                message = "Erro ao tentar realizar a operação",
+                message = ex.Message,
                 statusCode = (int)HttpStatusCode.BadRequest
             }));            
         }
