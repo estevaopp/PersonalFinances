@@ -23,6 +23,6 @@ namespace PersonalFinances.Application.ViewModel.Response
 
         public int ExpenditureCategoryId { get; set; }
 
-        public virtual ExpenditureCategory ExpenditureCategory { get; set; }
+        public ExpenditureCategory ExpenditureCategory { get; set; }
     }
 }

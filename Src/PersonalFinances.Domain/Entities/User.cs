@@ -50,7 +50,7 @@ namespace PersonalFinances.Domain.Entities
             Password = HashPassword(password);
             IsEmailValid = false;
             UserRoleId = userRoleId;
-            CreationDate = DateTime.Now;
+            CreationDate = DateTime.UtcNow;
         }
 
         public void UpdateIsEmailValid()
