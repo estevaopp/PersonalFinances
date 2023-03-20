@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using PersonalFinances.Application.Interfaces;
 using PersonalFinances.Application.ViewModel.Request.RevenueCategory;
 using PersonalFinances.Application.ViewModel.Response;
+using PersonalFinances.Application.ViewModel.Response.CommandResponse;
 using PersonalFinances.Domain.Enums;
 using PersonalFinances.Domain.Exceptions;
 
@@ -36,7 +37,14 @@ namespace PersonalFinances.Api.Controllers
             if(revenueCategoryResponse == null)
                 return NotFound();
 
-            return Ok(revenueCategoryResponse);
+            return Ok
+            (
+                new Response
+                {
+                    Success = true,
+                    Data = revenueCategoryResponse
+                }
+            );
         }
 
         [HttpGet]
@@ -50,7 +58,14 @@ namespace PersonalFinances.Api.Controllers
             if(revenueCategoryResponses == null)
                 return NotFound();
 
-            return Ok(revenueCategoryResponses);
+            return Ok
+            (
+                new Response
+                {
+                    Success = true,
+                    Data = revenueCategoryResponses
+                }
+            );
         }
 
         [HttpPost]

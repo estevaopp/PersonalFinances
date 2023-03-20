@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using PersonalFinances.Application.Interfaces;
 using PersonalFinances.Application.ViewModel.Request.UserRole;
 using PersonalFinances.Application.ViewModel.Response;
+using PersonalFinances.Application.ViewModel.Response.CommandResponse;
 using PersonalFinances.Domain.Entities;
 using PersonalFinances.Domain.Enums;
 using PersonalFinances.Domain.Exceptions;
@@ -35,7 +36,14 @@ namespace PersonalFinances.Api.Controllers
             if(userRoleResponse == null)
                 return NotFound();
 
-            return Ok(userRoleResponse);
+            return Ok
+            (
+                new Response
+                {
+                    Success = true,
+                    Data = userRoleResponse
+                }
+            );
         }
 
         [HttpGet]
@@ -44,7 +52,14 @@ namespace PersonalFinances.Api.Controllers
         {
             var userRoleResponse = await _userRoleService.GetAll();
 
-            return Ok(userRoleResponse);
+            return Ok
+            (
+                new Response
+                {
+                    Success = true,
+                    Data = userRoleResponse
+                }
+            );
         }
 
         [HttpPost]
