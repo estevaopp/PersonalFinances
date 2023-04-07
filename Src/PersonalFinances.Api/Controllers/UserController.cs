@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using PersonalFinances.Application.Interfaces;
 using PersonalFinances.Application.ViewModel.Response;
+using PersonalFinances.Application.ViewModel.Response.CommandResponse;
 
 namespace PersonalFinances.Api.Controllers
 {
@@ -33,7 +34,14 @@ namespace PersonalFinances.Api.Controllers
             if(userResponse == null)
                 return NotFound();
 
-            return Ok(userResponse);
+            return Ok
+            (
+                new Response
+                {
+                    Success = true,
+                    Data = userResponse
+                }
+            );
         }
 
         [HttpGet]
@@ -43,7 +51,14 @@ namespace PersonalFinances.Api.Controllers
         {
             var userResponse = await _userService.GetAll();
 
-            return Ok(userResponse);
+            return Ok
+            (
+                new Response
+                {
+                    Success = true,
+                    Data = userResponse
+                }
+            );
         }
 
         [HttpGet]
@@ -57,7 +72,14 @@ namespace PersonalFinances.Api.Controllers
             if(userResponse == null)
                 return NotFound();
 
-            return Ok(userResponse);
+            return Ok
+            (
+                new Response
+                {
+                    Success = true,
+                    Data = userResponse
+                }
+            );
         }
     }
 }
