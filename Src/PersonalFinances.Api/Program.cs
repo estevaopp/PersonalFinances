@@ -9,6 +9,8 @@ using Serilog;
 using Serilog.Events;
 using Serilog.Formatting.Compact;
 
+// http://localhost:5281/swagger/index.html
+
 Log.Logger = new LoggerConfiguration()
     .MinimumLevel.Information()
     .MinimumLevel.Override("Microsoft", LogEventLevel.Warning)

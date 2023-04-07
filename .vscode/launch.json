@@ -15,7 +15,7 @@
             "stopAtEntry": false,
             "serverReadyAction": {
                 "action": "openExternally",
-                "pattern": "\\bNow listening on:\\s+(https?://\\S+)"
+                "pattern": "http://localhost:5281/"
             },
             "env": {
                 "ASPNETCORE_ENVIRONMENT": "Development"

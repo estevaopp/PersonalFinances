@@ -13,10 +13,10 @@ namespace PersonalFinances.Application.Interfaces
 
         Task<List<ExpenditureResponse>> GetByUserId(int userId);
 
-        Task Create(CreateExpenditureRequest createExpenditureRequest, int userId);
+        Task<ExpenditureResponse> Create(CreateExpenditureRequest createExpenditureRequest, int userId);
 
-        Task Update(UpdateExpenditureRequest updateExpenditureRequest, int id, int userId);
+        Task<ExpenditureResponse> Update(UpdateExpenditureRequest updateExpenditureRequest, int id, int userId);
 
-        Task Delete(int id, int userId);
+        Task<ExpenditureResponse> Delete(int id, int userId);
     }
 }

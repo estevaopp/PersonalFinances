@@ -24,14 +24,18 @@ namespace PersonalFinances.Application.Services
         }
 
 
-        public async Task Create(CreateExpenditureRequest createExpenditureRequest, int userId)
+        public async Task<ExpenditureResponse> Create(CreateExpenditureRequest createExpenditureRequest, int userId)
         {
             Expenditure expenditure = new Expenditure(createExpenditureRequest.Name, createExpenditureRequest.ExpenditureCategoryId, createExpenditureRequest.Date,
                                                       createExpenditureRequest.Value, createExpenditureRequest.Description, userId);
             await _expenditureRepository.AddAsync(expenditure);
+
+            ExpenditureResponse expenditureResponse = _mapper.Map<ExpenditureResponse>(expenditure);
+
+            return expenditureResponse;
         }
 
-        public async Task Delete(int id, int userId)
+        public async Task<ExpenditureResponse> Delete(int id, int userId)
         {
             Expenditure expenditure = await _expenditureRepository.GetByIdAndUserIdAsync(id, userId);
 
@@ -39,6 +43,10 @@ namespace PersonalFinances.Application.Services
                 throw new BusinessException("Invalid Id");
 
             await _expenditureRepository.DeleteAsync(expenditure);
+
+            ExpenditureResponse expenditureResponse = _mapper.Map<ExpenditureResponse>(expenditure);
+
+            return expenditureResponse;
         }
 
         public async Task<List<ExpenditureResponse>> GetByUserId(int userId)
@@ -57,7 +65,7 @@ namespace PersonalFinances.Application.Services
             return expenditureResponse;
         }
 
-        public async Task Update(UpdateExpenditureRequest updateExpenditureRequest, int id, int userId)
+        public async Task<ExpenditureResponse> Update(UpdateExpenditureRequest updateExpenditureRequest, int id, int userId)
         {
             Expenditure expenditure = await _expenditureRepository.GetByIdAndUserIdAsync(id, userId);
 
@@ -68,6 +76,10 @@ namespace PersonalFinances.Application.Services
                                updateExpenditureRequest.Value, updateExpenditureRequest.Description);
 
             await _expenditureRepository.UpdateAsync(expenditure);
+
+            ExpenditureResponse expenditureResponse = _mapper.Map<ExpenditureResponse>(expenditure);
+
+            return expenditureResponse;
         }
     }
 }

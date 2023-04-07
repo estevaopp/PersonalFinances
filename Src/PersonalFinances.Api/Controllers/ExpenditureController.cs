@@ -41,7 +41,7 @@ namespace PersonalFinances.Api.Controllers
 
         [HttpGet]
         [Route("")]
-        public async Task<ActionResult<ExpenditureResponse>> Get()
+        public async Task<ActionResult<List<ExpenditureResponse>>> Get()
         {
             int userId = int.Parse(User.Claims.FirstOrDefault(x => x.Type == "UserId").Value);
 
@@ -55,7 +55,7 @@ namespace PersonalFinances.Api.Controllers
 
         [HttpPost]
         [Route("")]
-        public async Task<ActionResult> Create(CreateExpenditureRequest createExpenditureRequest)
+        public async Task<ActionResult<ExpenditureResponse>> Create(CreateExpenditureRequest createExpenditureRequest)
         {
             if (createExpenditureRequest == null)
                 throw new ArgumentNullException(nameof(createExpenditureRequest));
@@ -65,14 +65,14 @@ namespace PersonalFinances.Api.Controllers
 
             int userId = int.Parse(User.Claims.FirstOrDefault(x => x.Type == "UserId").Value);
 
-            await _expenditureService.Create(createExpenditureRequest, userId);
+            var expenditureResponse = await _expenditureService.Create(createExpenditureRequest, userId);
 
-            return Ok();
+            return Ok(expenditureResponse);
         }
 
         [HttpPut]
         [Route("{id:int}")]
-        public async Task<ActionResult> Update(UpdateExpenditureRequest updateExpenditureRequest, int id)
+        public async Task<ActionResult<ExpenditureResponse>> Update(UpdateExpenditureRequest updateExpenditureRequest, int id)
         {
             if (updateExpenditureRequest == null)
                 throw new ArgumentNullException(nameof(updateExpenditureRequest));
@@ -82,9 +82,9 @@ namespace PersonalFinances.Api.Controllers
 
             int userId = int.Parse(User.Claims.FirstOrDefault(x => x.Type == "UserId").Value);
 
-            await _expenditureService.Update(updateExpenditureRequest, id, userId);
+            var expenditureResponse = await _expenditureService.Update(updateExpenditureRequest, id, userId);
 
-            return Ok();
+            return Ok(expenditureResponse);
         }
 
         [HttpDelete]
@@ -93,9 +93,9 @@ namespace PersonalFinances.Api.Controllers
         {
             int userId = int.Parse(User.Claims.FirstOrDefault(x => x.Type == "UserId").Value);
 
-            await _expenditureService.Delete(id, userId);
+            var expenditureResponse = await _expenditureService.Delete(id, userId);
 
-            return Ok();
+            return Ok(expenditureResponse);
         }
     }
 }
