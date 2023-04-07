@@ -80,9 +80,16 @@ namespace PersonalFinances.Api.Controllers
 
             int userId = int.Parse(User.Claims.FirstOrDefault(x => x.Type == "UserId").Value);
 
-            await _expenditureCategoryService.Create(createExpenditureCategoryRequest, userId);
+            var expenditureCategoryResponse = await _expenditureCategoryService.Create(createExpenditureCategoryRequest, userId);
 
-            return Ok();
+            return Ok
+            (
+                new Response
+                {
+                    Success = true,
+                    Data = expenditureCategoryResponse
+                }
+            );
         }
 
         [HttpPut]
@@ -97,9 +104,16 @@ namespace PersonalFinances.Api.Controllers
 
             int userId = int.Parse(User.Claims.FirstOrDefault(x => x.Type == "UserId").Value);
 
-            await _expenditureCategoryService.Update(updateExpenditureCategoryRequest, id, userId);
+            var expenditureCategoryResponse = await _expenditureCategoryService.Update(updateExpenditureCategoryRequest, id, userId);
 
-            return Ok();
+            return Ok
+            (
+                new Response
+                {
+                    Success = true,
+                    Data = expenditureCategoryResponse
+                }
+            );
         }
 
         [HttpDelete]
@@ -108,9 +122,16 @@ namespace PersonalFinances.Api.Controllers
         {
             int userId = int.Parse(User.Claims.FirstOrDefault(x => x.Type == "UserId").Value);
 
-            await _expenditureCategoryService.Delete(id, userId);
+            var expenditureCategoryResponse = await _expenditureCategoryService.Delete(id, userId);
 
-            return Ok();
+            return Ok
+            (
+                new Response
+                {
+                    Success = true,
+                    Data = expenditureCategoryResponse
+                }
+            );
         }
     }
 }

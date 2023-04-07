@@ -72,9 +72,16 @@ namespace PersonalFinances.Api.Controllers
             if (!ModelState.IsValid)
                 return BadRequest(new BusinessException("Invalid Request", nameof(CreateUserRoleRequest), ErroEnum.ResourceBadRequest));
 
-            await _userRoleService.Create(createUserRoleRequest);
+            var userRoleResponse = await _userRoleService.Create(createUserRoleRequest);
 
-            return Ok();
+            return Ok
+            (
+                new Response
+                {
+                    Success = true,
+                    Data = userRoleResponse
+                }
+            );
         }
 
         [HttpPut]
@@ -87,18 +94,32 @@ namespace PersonalFinances.Api.Controllers
             if (!ModelState.IsValid)
                 return BadRequest(new BusinessException("Invalid Request", nameof(UpdateUserRoleRequest), ErroEnum.ResourceBadRequest));
 
-            await _userRoleService.Update(updateUserRoleRequest, id);
+            var userRoleResponse = await _userRoleService.Update(updateUserRoleRequest, id);
 
-            return Ok();
+            return Ok
+            (
+                new Response
+                {
+                    Success = true,
+                    Data = userRoleResponse
+                }
+            );
         }
 
         [HttpDelete]
         [Route("{id:int}")]
         public async Task<ActionResult> Delete(int id)
         {
-            await _userRoleService.Delete(id);
+            var userRoleResponse = await _userRoleService.Delete(id);
 
-            return Ok();
+            return Ok
+            (
+                new Response
+                {
+                    Success = true,
+                    Data = userRoleResponse
+                }
+            );
         }
     }
 }

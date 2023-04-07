@@ -80,9 +80,16 @@ namespace PersonalFinances.Api.Controllers
 
             int userId = int.Parse(User.Claims.FirstOrDefault(x => x.Type == "UserId").Value);
 
-            await _revenueService.Create(createRevenueRequest, userId);
+            var revenueResponse = await _revenueService.Create(createRevenueRequest, userId);
 
-            return Ok();
+            return Ok
+            (
+                new Response
+                {
+                    Success = true,
+                    Data = revenueResponse
+                }
+            );
         }
 
         [HttpPut]
@@ -97,9 +104,16 @@ namespace PersonalFinances.Api.Controllers
 
             int userId = int.Parse(User.Claims.FirstOrDefault(x => x.Type == "UserId").Value);
 
-            await _revenueService.Update(updateRevenueRequest, id, userId);
+            var revenueResponse = await _revenueService.Update(updateRevenueRequest, id, userId);
 
-            return Ok();
+            return Ok
+            (
+                new Response
+                {
+                    Success = true,
+                    Data = revenueResponse
+                }
+            );
         }
 
         [HttpDelete]
@@ -108,9 +122,16 @@ namespace PersonalFinances.Api.Controllers
         {
             int userId = int.Parse(User.Claims.FirstOrDefault(x => x.Type == "UserId").Value);
 
-            await _revenueService.Delete(id, userId);
+            var revenueResponse = await _revenueService.Delete(id, userId);
 
-            return Ok();
+            return Ok
+            (
+                new Response
+                {
+                    Success = true,
+                    Data = revenueResponse
+                }
+            );
         }
     }
 }

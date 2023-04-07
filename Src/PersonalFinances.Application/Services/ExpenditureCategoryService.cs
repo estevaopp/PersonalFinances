@@ -24,13 +24,18 @@ namespace PersonalFinances.Application.Services
         }
 
 
-        public async Task Create(CreateExpenditureCategoryRequest createExpenditureCategoryRequest, int userId)
+        public async Task<ExpenditureCategoryResponse> Create(CreateExpenditureCategoryRequest createExpenditureCategoryRequest, int userId)
         {
             ExpenditureCategory expenditureCategory = new ExpenditureCategory(createExpenditureCategoryRequest.Name, createExpenditureCategoryRequest.Description, userId);
+
             await _expenditureCategoryRepository.AddAsync(expenditureCategory);
+            
+            var expenditureCategoryResponse = _mapper.Map<ExpenditureCategoryResponse>(expenditureCategory);
+
+            return expenditureCategoryResponse;
         }
 
-        public async Task Delete(int id, int userId)
+        public async Task<ExpenditureCategoryResponse> Delete(int id, int userId)
         {
             ExpenditureCategory expenditureCategory = await _expenditureCategoryRepository.GetByIdAndUserIdAsync(id, userId);
 
@@ -38,6 +43,10 @@ namespace PersonalFinances.Application.Services
                 throw new BusinessException("Invalid Id");
 
             await _expenditureCategoryRepository.DeleteAsync(expenditureCategory);
+
+            var expenditureCategoryResponse = _mapper.Map<ExpenditureCategoryResponse>(expenditureCategory);
+
+            return expenditureCategoryResponse;
         }
 
         public async Task<List<ExpenditureCategoryResponse>> GetByUserId(int userId)
@@ -51,12 +60,13 @@ namespace PersonalFinances.Application.Services
         public async Task<ExpenditureCategoryResponse> GetByIdAndUserId(int id, int userId)
         {
             ExpenditureCategory expenditureCategory = (ExpenditureCategory) await _expenditureCategoryRepository.GetByIdAndUserIdAsNoTrackingAsync(id, userId);
+            
             ExpenditureCategoryResponse expenditureCategoryResponse = _mapper.Map<ExpenditureCategoryResponse>(expenditureCategory); 
 
             return expenditureCategoryResponse;
         }
 
-        public async Task Update(UpdateExpenditureCategoryRequest updateExpenditureCategoryRequest, int id, int userId)
+        public async Task<ExpenditureCategoryResponse> Update(UpdateExpenditureCategoryRequest updateExpenditureCategoryRequest, int id, int userId)
         {
             ExpenditureCategory expenditureCategory = await _expenditureCategoryRepository.GetByIdAndUserIdAsync(id, userId);
 
@@ -66,6 +76,10 @@ namespace PersonalFinances.Application.Services
             expenditureCategory.Update(updateExpenditureCategoryRequest.Name, updateExpenditureCategoryRequest.Description);
 
             await _expenditureCategoryRepository.UpdateAsync(expenditureCategory);
+
+            var expenditureCategoryResponse = _mapper.Map<ExpenditureCategoryResponse>(expenditureCategory);
+
+            return expenditureCategoryResponse;
         }
     }
 }

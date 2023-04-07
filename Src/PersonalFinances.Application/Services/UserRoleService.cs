@@ -39,13 +39,17 @@ namespace PersonalFinances.Application.Services
             return userRoleResponse;
         }
 
-        public async Task Create(CreateUserRoleRequest createUserRoleRequest)
+        public async Task<UserRoleResponse> Create(CreateUserRoleRequest createUserRoleRequest)
         {
             UserRole userRole = new UserRole(createUserRoleRequest.Name, createUserRoleRequest.Description);
             await _userRoleRepository.AddAsync(userRole);
+            
+            UserRoleResponse userRoleResponse = _mapper.Map<UserRoleResponse>(userRole); 
+
+            return userRoleResponse;
         }
 
-        public async Task Update(UpdateUserRoleRequest updateUserRoleRequest, int id)
+        public async Task<UserRoleResponse> Update(UpdateUserRoleRequest updateUserRoleRequest, int id)
         {
             UserRole userRole = await _userRoleRepository.GetByIdAsync(id);
 
@@ -55,9 +59,13 @@ namespace PersonalFinances.Application.Services
             userRole.Update(updateUserRoleRequest.Name, updateUserRoleRequest.Description);
 
             await _userRoleRepository.UpdateAsync(userRole);
+            
+            UserRoleResponse userRoleResponse = _mapper.Map<UserRoleResponse>(userRole); 
+
+            return userRoleResponse;
         }
 
-        public async Task Delete(int id)
+        public async Task<UserRoleResponse> Delete(int id)
         {
             UserRole userRole = await _userRoleRepository.GetByIdAsync(id);
 
@@ -65,6 +73,10 @@ namespace PersonalFinances.Application.Services
                 throw new BusinessException("Invalid Id");
 
             await _userRoleRepository.DeleteAsync(userRole);
+            
+            UserRoleResponse userRoleResponse = _mapper.Map<UserRoleResponse>(userRole); 
+
+            return userRoleResponse;
         }
     }
 }

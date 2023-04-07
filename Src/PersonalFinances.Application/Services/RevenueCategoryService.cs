@@ -23,13 +23,17 @@ namespace PersonalFinances.Application.Services
             _revenueCategoryRepository = revenueCategoryRepository;
         }
 
-        public async Task Create(CreateRevenueCategoryRequest createRevenueCategoryRequest, int userId)
+        public async Task<RevenueCategoryResponse> Create(CreateRevenueCategoryRequest createRevenueCategoryRequest, int userId)
         {
             RevenueCategory revenueCategory = new RevenueCategory(createRevenueCategoryRequest.Name, createRevenueCategoryRequest.Description, userId);
             await _revenueCategoryRepository.AddAsync(revenueCategory);
+            
+            RevenueCategoryResponse revenueCategoryResponse = _mapper.Map<RevenueCategoryResponse>(revenueCategory); 
+
+            return revenueCategoryResponse;
         }
 
-        public async Task Delete(int id, int userId)
+        public async Task<RevenueCategoryResponse> Delete(int id, int userId)
         {
             RevenueCategory revenueCategory = await _revenueCategoryRepository.GetByIdAndUserIdAsync(id, userId);
 
@@ -37,6 +41,10 @@ namespace PersonalFinances.Application.Services
                 throw new BusinessException("Invalid Id");
 
             await _revenueCategoryRepository.DeleteAsync(revenueCategory);
+            
+            RevenueCategoryResponse revenueCategoryResponse = _mapper.Map<RevenueCategoryResponse>(revenueCategory); 
+
+            return revenueCategoryResponse;
         }
 
         public async Task<List<RevenueCategoryResponse>> GetByUserId(int userId)
@@ -55,7 +63,7 @@ namespace PersonalFinances.Application.Services
             return revenueCategoryResponse;
         }
 
-        public async Task Update(UpdateRevenueCategoryRequest updateRevenueCategoryRequest, int id, int userId)
+        public async Task<RevenueCategoryResponse> Update(UpdateRevenueCategoryRequest updateRevenueCategoryRequest, int id, int userId)
         {
             RevenueCategory revenueCategory = await _revenueCategoryRepository.GetByIdAndUserIdAsync(id, userId);
 
@@ -65,6 +73,10 @@ namespace PersonalFinances.Application.Services
             revenueCategory.Update(updateRevenueCategoryRequest.Name, updateRevenueCategoryRequest.Description);
 
             await _revenueCategoryRepository.UpdateAsync(revenueCategory);
+            
+            RevenueCategoryResponse revenueCategoryResponse = _mapper.Map<RevenueCategoryResponse>(revenueCategory); 
+
+            return revenueCategoryResponse;
         }
     }
 }

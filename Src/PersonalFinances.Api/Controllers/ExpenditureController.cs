@@ -82,7 +82,14 @@ namespace PersonalFinances.Api.Controllers
 
             var expenditureResponse = await _expenditureService.Create(createExpenditureRequest, userId);
 
-            return Ok(expenditureResponse);
+            return Ok
+            (
+                new Response
+                {
+                    Success = true,
+                    Data = expenditureResponse
+                }
+            );;
         }
 
         [HttpPut]
@@ -99,7 +106,14 @@ namespace PersonalFinances.Api.Controllers
 
             var expenditureResponse = await _expenditureService.Update(updateExpenditureRequest, id, userId);
 
-            return Ok(expenditureResponse);
+            return Ok
+            (
+                new Response
+                {
+                    Success = true,
+                    Data = expenditureResponse
+                }
+            );;
         }
 
         [HttpDelete]
@@ -110,7 +124,14 @@ namespace PersonalFinances.Api.Controllers
 
             var expenditureResponse = await _expenditureService.Delete(id, userId);
 
-            return Ok(expenditureResponse);
+            return Ok
+            (
+                new Response
+                {
+                    Success = true,
+                    Data = expenditureResponse
+                }
+            );;
         }
     }
 }

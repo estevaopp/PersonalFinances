@@ -24,15 +24,19 @@ namespace PersonalFinances.Application.Services
         }
 
 
-        public async Task Create(CreateRevenueRequest createRevenueRequest, int userId)
+        public async Task<RevenueResponse> Create(CreateRevenueRequest createRevenueRequest, int userId)
         {
             Revenue revenue = new Revenue(createRevenueRequest.Name, createRevenueRequest.RevenueCategoryId, createRevenueRequest.Date,
                                           createRevenueRequest.Value, createRevenueRequest.Description, userId);
 
             await _revenueRepository.AddAsync(revenue);
+
+            var revenueResponse = _mapper.Map<RevenueResponse>(revenue);
+
+            return revenueResponse;
         }
 
-        public async Task Delete(int id, int userId)
+        public async Task<RevenueResponse> Delete(int id, int userId)
         {
             Revenue revenue = (Revenue) await _revenueRepository.GetByIdAndUserIdAsync(id, userId);
 
@@ -40,6 +44,10 @@ namespace PersonalFinances.Application.Services
                 throw new BusinessException("Invalid Id");
 
             await _revenueRepository.DeleteAsync(revenue);
+
+            var revenueResponse = _mapper.Map<RevenueResponse>(revenue);
+
+            return revenueResponse;
         }
 
         public async Task<List<RevenueResponse>> GetByUserId(int userId)
@@ -58,7 +66,7 @@ namespace PersonalFinances.Application.Services
             return revenueResponse;
         }
 
-        public async Task Update(UpdateRevenueRequest updateRevenueRequest, int id, int userId)
+        public async Task<RevenueResponse> Update(UpdateRevenueRequest updateRevenueRequest, int id, int userId)
         {
             Revenue revenue = (Revenue) await _revenueRepository.GetByIdAndUserIdAsync(id, userId);
 
@@ -69,6 +77,10 @@ namespace PersonalFinances.Application.Services
                            updateRevenueRequest.Value, updateRevenueRequest.Description);
 
             await _revenueRepository.UpdateAsync(revenue);
+
+            var revenueResponse = _mapper.Map<RevenueResponse>(revenue);
+
+            return revenueResponse;
         }
     }
 }

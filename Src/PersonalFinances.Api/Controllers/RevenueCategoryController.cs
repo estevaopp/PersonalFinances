@@ -70,7 +70,7 @@ namespace PersonalFinances.Api.Controllers
 
         [HttpPost]
         [Route("")]
-        public async Task<ActionResult> Create(CreateRevenueCategoryRequest createRevenueCategoryRequest)
+        public async Task<ActionResult<RevenueCategoryResponse>> Create(CreateRevenueCategoryRequest createRevenueCategoryRequest)
         {
             if (createRevenueCategoryRequest == null)
                 throw new ArgumentNullException(nameof(createRevenueCategoryRequest));
@@ -80,14 +80,21 @@ namespace PersonalFinances.Api.Controllers
 
             int userId = int.Parse(User.Claims.FirstOrDefault(x => x.Type == "UserId").Value);
 
-            await _revenueCategoryService.Create(createRevenueCategoryRequest, userId);
+            var revenueCategoryResponse = await _revenueCategoryService.Create(createRevenueCategoryRequest, userId);
 
-            return Ok();
+            return Ok
+            (
+                new Response
+                {
+                    Success = true,
+                    Data = revenueCategoryResponse
+                }
+            );
         }
 
         [HttpPut]
         [Route("{id:int}")]
-        public async Task<ActionResult> Update(UpdateRevenueCategoryRequest updateRevenueCategoryRequest, int id)
+        public async Task<ActionResult<RevenueCategoryResponse>> Update(UpdateRevenueCategoryRequest updateRevenueCategoryRequest, int id)
         {
             if (updateRevenueCategoryRequest == null)
                 throw new ArgumentNullException(nameof(updateRevenueCategoryRequest));
@@ -97,9 +104,16 @@ namespace PersonalFinances.Api.Controllers
 
             int userId = int.Parse(User.Claims.FirstOrDefault(x => x.Type == "UserId").Value);
 
-            await _revenueCategoryService.Update(updateRevenueCategoryRequest, id, userId);
+            var revenueCategoryResponse = await _revenueCategoryService.Update(updateRevenueCategoryRequest, id, userId);
 
-            return Ok();
+            return Ok
+            (
+                new Response
+                {
+                    Success = true,
+                    Data = revenueCategoryResponse
+                }
+            );
         }
 
         [HttpDelete]
@@ -108,9 +122,16 @@ namespace PersonalFinances.Api.Controllers
         {
             int userId = int.Parse(User.Claims.FirstOrDefault(x => x.Type == "UserId").Value);
 
-            await _revenueCategoryService.Delete(id, userId);
+            var revenueCategoryResponse = await _revenueCategoryService.Delete(id, userId);
 
-            return Ok();
+            return Ok
+            (
+                new Response
+                {
+                    Success = true,
+                    Data = revenueCategoryResponse
+                }
+            );
         }
     }
 }

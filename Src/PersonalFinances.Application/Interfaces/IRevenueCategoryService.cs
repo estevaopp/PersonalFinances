@@ -13,10 +13,10 @@ namespace PersonalFinances.Application.Interfaces
 
         Task<List<RevenueCategoryResponse>> GetByUserId(int userId);
 
-        Task Create(CreateRevenueCategoryRequest createRevenueCategoryRequest, int userId);
+        Task<RevenueCategoryResponse> Create(CreateRevenueCategoryRequest createRevenueCategoryRequest, int userId);
 
-        Task Update(UpdateRevenueCategoryRequest updateRevenueCategoryRequest, int id, int userId);
+        Task<RevenueCategoryResponse> Update(UpdateRevenueCategoryRequest updateRevenueCategoryRequest, int id, int userId);
 
-        Task Delete(int id, int userId);
+        Task<RevenueCategoryResponse> Delete(int id, int userId);
     }
 }
