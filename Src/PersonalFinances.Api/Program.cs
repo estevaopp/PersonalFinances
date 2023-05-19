@@ -93,6 +93,11 @@ var app = builder.Build();
 
 
 
+app.UseCors
+(
+    x => x.AllowAnyHeader().AllowAnyOrigin().AllowAnyMethod()
+);
+
 app.UseMiddleware<ExceptionMiddleware>();
 
 // Configure the HTTP request pipeline.
@@ -104,10 +109,6 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-app.UseCors
-(
-    x => x.AllowAnyHeader().AllowAnyOrigin().AllowAnyMethod()
-);
 
 app.UseAuthentication();
 app.UseAuthorization();
