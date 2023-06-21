@@ -20,6 +20,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\PersonalFinances.Infra.IoC\PersonalFinances.Infra.IoC.csproj" />
+    <ProjectReference Include="..\EstevaoSdk\EstevaoSdk.csproj" />
   </ItemGroup>
 
 </Project>

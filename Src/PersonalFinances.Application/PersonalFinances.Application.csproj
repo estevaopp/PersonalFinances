@@ -2,6 +2,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\PersonalFinances.Domain\PersonalFinances.Domain.csproj" />
+    <ProjectReference Include="..\EstevaoSdk\EstevaoSdk.csproj" />
   </ItemGroup>
 
   <ItemGroup>

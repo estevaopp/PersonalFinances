@@ -4,6 +4,7 @@
     <ProjectReference Include="..\PersonalFinances.Domain\PersonalFinances.Domain.csproj" />
     <ProjectReference Include="..\PersonalFinances.Application\PersonalFinances.Application.csproj" />
     <ProjectReference Include="..\PersonalFinances.Infra.Data\PersonalFinances.Infra.Data.csproj" />
+    <ProjectReference Include="..\EstevaoSdk\EstevaoSdk.csproj" />
   </ItemGroup>
 
   <ItemGroup>
